@@ -148,17 +148,19 @@ body::before {
   font-size:13px;
   }
   
-  /* Language Button */
-  .lang-btn{
-    background:#7CFC00;
-    border:2px solid #2e7d32;
-    padding:4px 10px;
-    border-radius:5px;
-    font-size:13px;
-    font-weight:600;
-    cursor:pointer;
-    }
-  
+  .rec-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lang-btn{
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: left;
+}
   /* Search */
   #search{
   padding:6px 10px;
