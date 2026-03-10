@@ -4,83 +4,139 @@
   <meta charset="UTF-8">
   <title>Uttarakhand Smart Tourism</title>
   <link rel="stylesheet" href="style.css">
-  <!--   <link rel="stylesheet" href="index"> -->
+<!--   <link rel="stylesheet" href="index"> -->
 </head>
 
 <body>
-
   <header class="header">
-<!-- Profile Section -->
-    <div class="profile">
-      <img src="profile.jpg" alt="User Profile">
-      <span class="username">Karan</span>
-      <div class="profile-dropdown">
-        <a href="#">My Profile</a>
-        <a href="#">Settings</a>
-        <a href="#">Logout</a>
-      </div>
-    </div>
+
     <div class="logo">
-      <img src="logo2.jpeg" alt="Garh Kumo Logo" style="height:50px;">
+    <img src="logo2.jpeg" alt="Logo">
     </div>
-    <input type="text" id="search" placeholder="   🔍 Search places...">
-  </header>
+    
+    <ul class="nav">
+
+      <li><a href="#">Home</a></li>
+      
+      <li class="dropdown">
+
+        <a href="#" id="destBtn">Destinations ▾</a>
+        
+        <div class="dropdown-box" id="destMenu">
+        
+        <a href="top-destinations.html">⭐ Top Destinations</a>
+        
+        <a href="all-destinations.html">🌍 All Destinations</a>
+        
+        </div>
+        
+        </li>
+      
+      <li><a href="#">Services</a></li>
+      
+      </ul>
+    <input type="text" id="search" placeholder="🔍 Search places...">
+
+    <button class="login-btn">Login</button>
+    
+    </nav>
+    
+    
+    </header>
+  
+
   <!-- Main -->
-
-
   <main class="main">
     <!-- Recommended Section -->
+
+
+
     <section class="recommended">
-      <h2>✨ Recommended Destinations</h2>
-      <div id="recommendedList" class="card-row"></div>
+
+      <div id="recommendedList" class="card-row">
+
+
+    <select class="lang-btn" id="languageSelect"> 
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+      <option value="bn">Bengali</option>
+      <option value="ta">Tamil</option>
+      <option value="te">Telugu</option>
+      <option value="mr">Marathi</option>
+      <option value="gu">Gujarati</option>
+      <option value="kn">Kannada</option>
+      <option value="ml">Malayalam</option>
+      <option value="pa">Punjabi</option>
+      
+      <option value="fr">French</option>
+      <option value="es">Spanish</option>
+      <option value="de">German</option>
+      <option value="ru">Russian</option>
+      <option value="zh">Chinese</option>
+      <option value="ja">Japanese</option>
+      <option value="ko">Korean</option>
+      <option value="ar">Arabic</option>
+      <option value="pt">Portuguese</option>
+      <option value="it">Italian</option>
+      </select>
+
+      </div>
     </section>
 
-
+    <div>
+      
+    
+    </div>
+    
     <section class="flashcards">
       <h2>Explore Uttarakhand</h2>
       <div class="flashcard-slider">
-
-        <div class="flashcard">
+   
+         <div class="flashcard">
           <video src="kedarnath.mp4" autoplay muted loop playsinline></video>
           <h3>Kedarnath</h3>
         </div>
 
-
+    
         <div class="flashcard">
           <video src="badrinath.mp4" autoplay muted loop playsinline></video>
           <h3>Badrinath</h3>
         </div>
-
+    
         <div class="flashcard">
           <video src="nainital.mp4" autoplay muted loop playsinline></video>
           <h3>Nainital</h3>
         </div>
-
+    
         <div class="flashcard">
           <video src="rishikesh.mp4" autoplay muted loop playsinline></video>
           <h3>Rishikesh</h3>
         </div>
-
+    
       </div>
     </section>
 
-
+    
+    
+    
     <!-- JS for auto change -->
     <script>
       let flashcards = document.querySelectorAll(".flashcard");
       let current = 0;
-
+    
       function showNextCard() {
         flashcards[current].classList.remove("active");
         current = (current + 1) % flashcards.length;
         flashcards[current].classList.add("active");
       }
-
+    
       setInterval(showNextCard, 4000); // change every 4 seconds
     </script>
+    
+
+    
 
     <!-- Highlights -->
-
     <section class="highlights">
       <h2>🏞️Recommended For You</h2>
       <div class="card-row">
@@ -93,22 +149,18 @@
         </div>
 
         <div class="card">
-          <img src="roopkund.jpg" alt="Roopkund">
+          <img src="auli.jpeg" alt="Badrinath">
           <div class="body">
-            <div class="title">Roopkund</div>
-            <div class="desc">The Skeleton Lake
-
-            </div>
-            <a href="auli.html" class="card-link">
-
+            <div class="title">Auli</div>
+            <div class="desc">.</div>
           </div>
         </div>
 
         <div class="card">
-          <img src="auli.jpeg" alt="Auli">
+          <img src="roopkund.jpg" alt="Binsar">
           <div class="body">
-            <div class="title">Auli</div>
-            <div class="desc">The Skiing Paradise of India</div>
+            <div class="title">roopkund</div>
+            <div class="desc">.</div>
           </div>
         </div>
       </div>
@@ -116,7 +168,7 @@
 
     <!-- Other Services -->
     <section class="others">
-      <h2> Other Services</h2>
+      <h2>🛎️ Other Services</h2>
       <div class="card-row">
         <div class="card small">
           <img src="hotels.webp" alt="Hotels">
@@ -126,7 +178,7 @@
           </div>
         </div>
         <div class="card small">
-          <img src="food2.webp" alt="Food">
+          <img src="food.jpeg" alt="Food">
           <div class="body">
             <div class="title">Food</div>
             <div class="desc">Taste local cuisine.</div>
@@ -141,9 +193,28 @@
         </div>
       </div>
     </section>
-  </main>
+    </main>
 
-  <script src="index.js"></script>
+  <div id="google_translate_element" style="display:none;"></div>
+
+<script>
+function googleTranslateElementInit() {
+new google.translate.TranslateElement({
+pageLanguage: 'en',
+includedLanguages: 'en,hi,bn,ta,te,mr,gu,kn,ml,pa,fr,es,de,ru,zh,ja,ko,ar,pt,it'
+}, 'google_translate_element');
+}
+
+document.getElementById("languageSelect").addEventListener("change", function() {
+var lang = this.value;
+var select = document.querySelector(".goog-te-combo");
+if(select){
+select.value = lang;
+select.dispatchEvent(new Event("change"));
+}
+});
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="script.js"></script>
 </body>
-
 </html>
