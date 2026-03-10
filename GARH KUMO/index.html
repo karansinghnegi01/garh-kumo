@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uttarakhand Smart Tourism</title>
+  <link rel="stylesheet" href="style.css">
+  <!--   <link rel="stylesheet" href="index"> -->
+</head>
+
+<body>
+
+  <header class="header">
+<!-- Profile Section -->
+    <div class="profile">
+      <img src="profile.jpg" alt="User Profile">
+      <span class="username">Karan</span>
+      <div class="profile-dropdown">
+        <a href="#">My Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
+    <div class="logo">
+      <img src="logo2.jpeg" alt="Garh Kumo Logo" style="height:50px;">
+    </div>
+    <input type="text" id="search" placeholder="   🔍 Search places...">
+  </header>
+  <!-- Main -->
+
+
+  <main class="main">
+    <!-- Recommended Section -->
+    <section class="recommended">
+      <h2>✨ Recommended Destinations</h2>
+      <div id="recommendedList" class="card-row"></div>
+    </section>
+
+
+    <section class="flashcards">
+      <h2>Explore Uttarakhand</h2>
+      <div class="flashcard-slider">
+
+        <div class="flashcard">
+          <video src="kedarnath.mp4" autoplay muted loop playsinline></video>
+          <h3>Kedarnath</h3>
+        </div>
+
+
+        <div class="flashcard">
+          <video src="badrinath.mp4" autoplay muted loop playsinline></video>
+          <h3>Badrinath</h3>
+        </div>
+
+        <div class="flashcard">
+          <video src="nainital.mp4" autoplay muted loop playsinline></video>
+          <h3>Nainital</h3>
+        </div>
+
+        <div class="flashcard">
+          <video src="rishikesh.mp4" autoplay muted loop playsinline></video>
+          <h3>Rishikesh</h3>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- JS for auto change -->
+    <script>
+      let flashcards = document.querySelectorAll(".flashcard");
+      let current = 0;
+
+      function showNextCard() {
+        flashcards[current].classList.remove("active");
+        current = (current + 1) % flashcards.length;
+        flashcards[current].classList.add("active");
+      }
+
+      setInterval(showNextCard, 4000); // change every 4 seconds
+    </script>
+
+    <!-- Highlights -->
+
+    <section class="highlights">
+      <h2>🏞️Recommended For You</h2>
+      <div class="card-row">
+        <div class="card">
+          <img src="chopta.jpeg" alt="Chopta">
+          <div class="body">
+            <div class="title">Chopta Valley</div>
+            <div class="desc">Mini Switzerland of Uttarakhand.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="roopkund.jpg" alt="Roopkund">
+          <div class="body">
+            <div class="title">Roopkund</div>
+            <div class="desc">The Skeleton Lake
+
+            </div>
+            <a href="auli.html" class="card-link">
+
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="auli.jpeg" alt="Auli">
+          <div class="body">
+            <div class="title">Auli</div>
+            <div class="desc">The Skiing Paradise of India</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Other Services -->
+    <section class="others">
+      <h2> Other Services</h2>
+      <div class="card-row">
+        <div class="card small">
+          <img src="hotels.webp" alt="Hotels">
+          <div class="body">
+            <div class="title">Hotels</div>
+            <div class="desc">Best stays in Uttarakhand.</div>
+          </div>
+        </div>
+        <div class="card small">
+          <img src="food2.webp" alt="Food">
+          <div class="body">
+            <div class="title">Food</div>
+            <div class="desc">Taste local cuisine.</div>
+          </div>
+        </div>
+        <div class="card small">
+          <img src="treak.webp" alt="Trekking">
+          <div class="body">
+            <div class="title">Trekking</div>
+            <div class="desc">Adventure in Himalayas.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

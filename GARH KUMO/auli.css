@@ -1,0 +1,114 @@
+/* BODY & BACKGROUND */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #000;
+  background-image: url('allbackground.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* OVERLAY */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.07);
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 60vh;
+  width: 100%;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-text {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  color: #fff;
+  text-shadow: 2px 4px 10px #000;
+}
+.hero-text h1 {
+  font-size: 60px;
+}
+.hero-text p {
+  font-size: 24px;
+}
+
+/* TEXT CONTAINER */
+.text-container {
+  background: rgba(255, 255, 255, 0.92);
+  padding: 40px 60px;
+  margin: 30px auto;
+  max-width: 1200px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* HEADINGS */
+.text-container h2 {
+  margin-bottom: 15px;
+  font-size: 28px;
+  color: #222;
+  border-left: 6px solid #0d6efd;
+  padding-left: 12px;
+}
+
+/* PARAGRAPHS */
+.about p,
+.trek p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* LISTS */
+.highlights ul,
+.trek ul {
+  font-size: 18px;
+  line-height: 1.8;
+  padding-left: 20px;
+}
+
+/* GALLERY */
+.gallery-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.gallery-row img {
+  width: 100%;
+  max-width: 32%;
+  border-radius: 12px;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 40px;
+  }
+  .text-container {
+    padding: 20px;
+    margin: 20px;
+  }
+  .gallery-row img {
+    max-width: 100%;
+  }
+}
