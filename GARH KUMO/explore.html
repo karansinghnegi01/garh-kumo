@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore - GarhKumo</title>
+<link rel="stylesheet" href="explore.css">
+</head>
+
+<body>
+
+<!-- ☰ BUTTON --><!-- ☰ BUTTON -->
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<!-- BACKDROP -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- MENU -->
+<div class="menu-box" id="menuBox">
+
+  <!-- ❌ CLOSE -->
+  <div class="close-btn" onclick="toggleMenu()">✖</div>
+
+  <a href="index.html">Home</a>
+
+  <!-- DESTINATION -->
+  <div class="menu-item" onclick="toggleSubMenu()">
+    Destinations ▾
+  </div>
+
+  <div class="submenu" id="submenu">
+    <a href="kedarnath.html">Kedarnath</a>
+    <a href="badrinath.html">Badrinath</a>
+    <a href="nainital.html">Nainital</a>
+    <a href="rishikesh.html">Rishikesh</a>
+    <a href="destinations.html">All Destinations</a>
+  </div>
+
+  <a href="hotels.html">Hotels</a>
+  <a href="wishlist.html">Wishlist</a>
+
+  <!-- 🔐 LOGIN DROPDOWN -->
+  <div class="menu-item" onclick="toggleLoginMenu()">
+    Login ▾
+  </div>
+
+  <div class="submenu" id="loginMenu">
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+    <a href="#">Profile</a>
+    <a href="#">Logout</a>
+  </div>
+
+</div>
+<!-- 🔍 SEARCH -->
+<div class="explore-header">
+  <h1>Explore Uttarakhand</h1>
+  <input type="text" id="searchPlace" placeholder="Search destinations...">
+</div>
+
+
+<!-- 👇 YAHAN DAAL -->
+<div class="filters">
+  <button onclick="filterPlaces('all')">All</button>
+  <button onclick="filterPlaces('temple')">Temple</button>
+  <button onclick="filterPlaces('hill')">Hill</button>
+  <button onclick="filterPlaces('snow')">Snow</button>
+</div>
+
+<!-- 🌍 CARDS -->
+<div class="explore-container" id="places">
+
+  <div class="place-card">
+    <img src="kedarnath.jpg">
+    <div class="overlay-text">
+      <h2>Kedarnath</h2>
+    </div>
+  </div>
+
+  <div class="place-card">
+    <img src="badrinath.jpg">
+    <div class="overlay-text">
+      <h2>Badrinath</h2>
+    </div>
+  </div>
+
+  <div class="place-card">
+    <img src="nainital.jpg">
+    <div class="overlay-text">
+      <h2>Nainital</h2>
+    </div>
+  </div>
+
+  <div class="place-card">
+    <img src="rishikesh.jpg">
+    <div class="overlay-text">
+      <h2>Rishikesh</h2>
+    </div>
+  </div>
+
+  <div class="place-card">
+    <img src="auli.jpg">
+    <div class="overlay-text">
+      <h2>Auli</h2>
+    </div>
+  </div>
+
+  <div class="place-card">
+    <img src="mussoorie.jpg">
+    <div class="overlay-text">
+      <h2>Mussoorie</h2>
+    </div>
+  </div>
+
+</div>
+<div class="place-card" data-type="temple" onclick="openPage('kedarnath.html')"></div>
+
+<script src="explore.js">
+  function filterPlaces(type){
+  document.querySelectorAll(".place-card").forEach(card=>{
+    if(type === "all" || card.dataset.type === type){
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+function openPage(page){
+  window.location.href = page;
+}
+window.addEventListener("scroll", ()=>{
+  document.querySelectorAll(".place-card").forEach(card=>{
+    let top = card.getBoundingClientRect().top;
+
+    if(top < window.innerHeight - 50){
+      card.classList.add("show");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+
