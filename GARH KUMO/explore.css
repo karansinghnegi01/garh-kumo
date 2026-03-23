@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #111;
+    color: white;
+  }
+  
+  /* HEADER */
+  .explore-header {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .explore-header input {
+    width: 400px;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+  }
+  
+  /* GRID */
+  .explore-container {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    justify-content: center;
+    gap: 25px;
+  }
+  
+  /* CARD */
+  .place-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  
+  .place-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: 0.4s;
+  }
+  
+  /* OVERLAY */
+  .overlay-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0,0,0,0.6);
+  }
+  
+  /* HOVER */
+  .place-card:hover img {
+    transform: scale(1.1);
+  }}/* MENU BUTTON */
+  .menu-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: black;
+      color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    
+    /* OVERLAY BLUR */
+    .overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
+      display: none;
+      z-index: 999;
+    }
+    
+    /* SHOW OVERLAY */
+    .overlay.active {
+      display: block;
+    }
+    
+    /* MENU BOX */
+    .menu-box {
+      position: fixed;
+      top: 0;
+      right: -270px;
+      width: 270px;
+      height: 100%;
+      background: black;
+      padding-top: 60px;
+      transition: 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    
+    /* ACTIVE */
+    .menu-box.active {
+      right: 0;
+    }
+    
+    /* CLOSE BUTTON */
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    
+    /* LINKS */
+    .menu-box a, .menu-item {
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    /* HOVER EFFECT */
+    .menu-box a:hover, .menu-item:hover {
+      background: #3498db;
+      padding-left: 25px;
+    }
+    
+    /* SUBMENU */
+    .submenu {
+      display: none;
+      background: #111;
+    }
+    
+    .submenu a {
+      padding-left: 35px;
+      font-size: 14px;
+    }
+    
+    /* ACTIVE */
+    .submenu.active {
+      display: block;
+    }
