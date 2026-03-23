@@ -5,89 +5,88 @@
   <title>Uttarakhand Smart Tourism</title>
   <link rel="stylesheet" href="style.css">
 <!--   <link rel="stylesheet" href="index"> -->
+   <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 
 <body>
   <header class="header">
 
+    <!-- Logo -->
     <div class="logo">
-      <img src="logo2.jpeg" alt="Logo" alt="logo">
+      <img src="logo2.jpeg" alt="logo">
     </div>
   
+    <!-- NAV LINKS -->
     <ul class="nav">
   
       <li><a href="#">Home</a></li>
   
       <li class="dropdown">
-        <a href="#" onclick="toggleMenu(event)">Destinations ▾</a>
-      
-        <div class="dropdown-content" id="dropdownMenu">
-        
-        <h4>⭐ Top Destinations</h4>
-        
-        <a href="kedarnath.html">Kedarnath</a>
-        <a href="badrinath.html">Badrinath</a>
-        <a href="nainital.html">Nainital</a>
-        <a href="rishikesh.html">Rishikesh</a>
-        <hr>
-        
-        <a href="destinations.html">🌍 All Destinations</a>
-        
+        <a href="#">Destinations ▾</a>
+  
+        <div class="dropdown-content">
+          <h4>Top Destinations</h4>
+          <a href="kedarnath.html">Kedarnath</a>
+          <a href="badrinath.html">Badrinath</a>
+          <a href="nainital.html">Nainital</a>
+          <a href="rishikesh.html">Rishikesh</a>
+          <hr>
+          <a href="destinations.html">All Destinations</a>
         </div>
-        
-        </li>
-  
-      <li><a href="#">Hotels</a></li>
-  
-      <!-- Search -->
-      <li>
-        <input type="text" id="search" placeholder="🔍 Search places...">
       </li>
   
-      <!-- Language -->
-      <li>
-        <select class="lang-btn" id="languageSelect">
-          <option value="en">EN</option>
-          <option value="hi">Hindi</option>
-          <option value="bn">Bengali</option>
-          <option value="ta">Tamil</option>
-          <option value="te">Telugu</option>
-          <option value="mr">Marathi</option>
-          <option value="gu">Gujarati</option>
-          <option value="kn">Kannada</option>
-          <option value="ml">Malayalam</option>
-          <option value="pa">Punjabi</option>
+      <li><a href="hotels.html">Hotels</a></li>
   
-          <option value="fr">French</option>
-          <option value="es">Spanish</option>
-          <option value="de">German</option>
-          <option value="ru">Russian</option>
-          <option value="zh">Chinese</option>
-          <option value="ja">Japanese</option>
-          <option value="ko">Korean</option>
-          <option value="ar">Arabic</option>
-          <option value="pt">Portuguese</option>
-          <option value="it">Italian</option>
-        </select>
-      </li>
+      <!-- ❤️ WISHLIST -->
+      <li><a href="wishlist.html">Wishlist </a></li>
+  
+      <!-- 🔥 EXPLORE -->
+      <li><a href="explore.html" class="explore-btn">Explore</a></li>
+  
     </ul>
-    <div class="profile-box">
-
-      <img src="profile.jpg" class="profile-img" onclick="toggleUserMenu()">
-    
-      <div class="user-dropdown" id="userMenu">
-    
-        <a href="login.html" class="btn login-btn">🔐 Login</a>
-    
-        <a href="signup.html" class="btn signup-btn">📝 Sign Up</a>
-    
-        <a href="help.html" class="btn help-btn">❓ Help & Support</a>
-    
+  
+    <!-- RIGHT SIDE -->
+    <div class="nav-right">
+  
+      <!-- 🌐 LANGUAGE -->
+      <select class="lang-btn" id="languageSelect">
+        <option value="en">EN</option>
+        <option value="hi">Hindi</option>
+        <option value="bn">Bengali</option>
+        <option value="ta">Tamil</option>
+        <option value="te">Telugu</option>
+        <option value="mr">Marathi</option>
+        <option value="gu">Gujarati</option>
+        <option value="kn">Kannada</option>
+        <option value="ml">Malayalam</option>
+        <option value="pa">Punjabi</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="de">German</option>
+        <option value="ru">Russian</option>
+        <option value="zh">Chinese</option>
+        <option value="ja">Japanese</option>
+        <option value="ko">Korean</option>
+        <option value="ar">Arabic</option>
+        <option value="pt">Portuguese</option>
+        <option value="it">Italian</option>
+      </select>
+  
+      <!-- 👤 PROFILE -->
+      <div class="profile-box">
+        <img src="profile.jpg" class="profile-img" onclick="toggleUserMenu()">
+  
+        <div class="user-dropdown" id="userMenu">
+          <a href="login.html">Login</a>
+          <a href="wishlist.html">Wishlist</a>
+          <a href="help.html">Help & Support</a>
+        </div>
       </div>
-    
+  
     </div>
+  
   </header>
-
   <!-- Main -->
   <main class="main">
     <!-- Recommended Section -->
@@ -199,12 +198,18 @@
       </div>
       <h2>🛎️ TOP PLACES</h2>
       <div class="card-row">
-        <div class="card small">
-          <img src="kedarnath.mp4" alt="Hotels">
-          <div class="body">
-            <div class="title">Kedarnath</div>
-            <div class="desc">Best places to visit</div>
+        
+        <a href="kedarnath.html" class="card-link">
+
+          <div class="card small">
+            <img src="kedarnath2.jpeg" alt="Kedarnath">
+            <div class="body">
+              <div class="title">Kedarnath</div>
+              <div class="desc">Best places to visit</div>
+            </div>
           </div>
+        
+        </a>
         </div>
        <div class="card-row">
           <div class="card small">
@@ -224,11 +229,93 @@
             </div>
        
     </section>
+    <section class="map-section">
+
+      <h2> Explore the Unexplored</h2>
+    
+      <div class="map-box" onclick="openMap()">
+        <img src="uttrakhandmap.png" style="width:100%; cursor:pointer;">
+        <p>Click to Explore Uttarakhand</p>
+      </div>
+    
+      <div id="mapPopup" class="popup">
+    
+        <div class="popup-box">
+    
+          <h3>Choose Category</h3>
+    
+          <button onclick="showPlaces('all')">All</button>
+          <button onclick="showPlaces('chardham')">Char Dham</button>
+          <button onclick="showPlaces('wildlife')">Wildlife</button>
+          <button onclick="showPlaces('hill')">Hill Stations</button>
+    
+          <div id="infoBox"></div>
+    
+          <button onclick="closeMap()">Close</button>
+    
+        </div>
+    
+      </div>
+    
+    </section>
+    <script>
+      const data = {
+        chardham: [
+          { name: "Kedarnath", info: "Shiva Temple in Himalayas" },
+          { name: "Badrinath", info: "Vishnu Temple" },
+          { name: "Gangotri", info: "Origin of Ganga" },
+          { name: "Yamunotri", info: "Origin of Yamuna" }
+        ],
+      
+        wildlife: [
+          { name: "Jim Corbett", info: "Tiger Reserve Forest" },
+          { name: "Rajaji National Park", info: "Elephants & Wildlife" }
+        ],
+      
+        hill: [
+          { name: "Nainital", info: "Lake City" },
+          { name: "Mussoorie", info: "Queen of Hills" }
+        ]
+      };
+      
+      function openMap(){
+        document.getElementById("mapPopup").style.display = "flex";
+      }
+      
+      function closeMap(){
+        document.getElementById("mapPopup").style.display = "none";
+      }
+      
+      function showPlaces(type){
+      
+        let box = document.getElementById("infoBox");
+        box.innerHTML = "";
+      
+        let places = [];
+      
+        if(type === "all"){
+          places = [...data.chardham, ...data.wildlife, ...data.hill];
+        } else {
+          places = data[type];
+        }
+      
+        places.forEach(p => {
+          let div = document.createElement("div");
+          div.style.margin = "10px 0";
+          div.innerHTML = `<b>${p.name}</b><br><small>${p.info}</small>`;
+          box.appendChild(div);
+        });
+      }
+      </script>
+    </section>
     </main>
     
      
   <div id="google_translate_element" style="display:none;"></div>
 
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
 function googleTranslateElementInit() {
 new google.translate.TranslateElement({
@@ -260,5 +347,135 @@ select.dispatchEvent(new Event("change"));
     }
   });
   </script>
+  <script>
+  const places = [
+  "Auli", "Almora", "Askot", "Adwani",
+  "Badrinath", "Binsar", "Bhikiyasain",
+  "Chakrata", "Chopta",
+  "Devprayag", "Dhanaulti",
+  "Gangotri", "Govindghat",
+  "Haridwar",
+  "Joshimath",
+  "Kedarnath", "Kausani",
+  "Lansdowne",
+  "Mukteshwar", "Mussoorie",
+  "Nainital", "Nandaprayag",
+  "Pauri", "Pithoragarh",
+  "Ranikhet", "Rishikesh",
+  "Srinagar (Garhwal)",
+  "Tungnath",
+  "Valley of Flowers",
+  "Yamunotri"
+];
+
+let input = document.getElementById("searchInput");
+let box = document.getElementById("suggestions");
+
+// INPUT EVENT (MOST IMPORTANT)
+input.addEventListener("input", function () {
+
+  let value = input.value.toLowerCase().trim();
+  box.innerHTML = "";
+
+  if (value === "") return;
+
+  let filtered = places.filter(place =>
+    place.toLowerCase().startsWith(value)  // 👈 A-to-Z proper logic
+  );
+
+  if (filtered.length === 0) {
+    box.innerHTML = "<div>No results</div>";
+    return;
+  }
+
+  filtered.forEach(place => {
+    let div = document.createElement("div");
+    div.innerText = place;
+
+    div.onclick = function () {
+      localStorage.setItem("selectedPlace", place);
+      window.location.href = "all-destinations.html";
+    };
+
+    box.appendChild(div);
+  });
+
+});</script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  const points = document.querySelectorAll(".point");
+  
+  points.forEach(point => {
+    point.addEventListener("mouseenter", function () {
+      let name = this.getAttribute("title");
+  
+      let label = document.createElement("div");
+      label.className = "map-label";
+      label.innerText = name;
+  
+      label.style.position = "absolute";
+      label.style.top = this.style.top;
+      label.style.left = this.style.left;
+      label.style.background = "black";
+      label.style.color = "white";
+      label.style.padding = "3px 8px";
+      label.style.fontSize = "12px";
+      label.style.borderRadius = "5px";
+  
+      label.id = "mapLabel";
+  
+      document.querySelector(".map-container").appendChild(label);
+    });
+  
+    point.addEventListener("mouseleave", function () {
+      let label = document.getElementById("mapLabel");
+      if(label) label.remove();
+    });
+  });
+  </script>
+  <footer class="footer">
+
+    <div class="footer-container">
+  
+      <div class="footer-box">
+        <h3>Uttarakhand Smart Tourism</h3>
+        <p>Explore the beauty of Himalayas with smart travel experience. Discover temples, wildlife, hill stations and hidden gems of Uttarakhand.</p>
+      </div>
+  
+      <div class="footer-box">
+        <h3>Quick Links</h3>
+        <a href="#">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="explore.html">Explore</a>
+      </div>
+  
+      <div class="footer-box">
+        <h3>Top Places</h3>
+        <a href="kedarnath.html">Kedarnath</a>
+        <a href="badrinath.html">Badrinath</a>
+        <a href="nainital.html">Nainital</a>
+        <a href="rishikesh.html">Rishikesh</a>
+      </div>
+  
+      <div class="footer-box">
+        <h3>Contact</h3>
+        <p>Email: support@uttarakhandtourism.com</p>
+        <p>Phone: +91 98765 *****</p>
+        <p>India</p>
+      </div>
+  
+    </div>
+  
+    <div class="footer-bottom">
+      <p>© 2026 Uttarakhand Smart Tourism | All Rights Reserved</p>
+    </div>
+    <div id="loader">
+      <div class="spinner"></div>
+    </div>
+  </footer>
 </body>
 </html>
