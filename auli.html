@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auli Travel Guide</title>
+  <link rel="stylesheet" href="badrinath.css">
+</head>
+
+<body>
+  
+<div class="home-btn" onclick="window.location.href='index.html'">🏠 Home</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <img src="auli.jpeg" class="hero-bg">
+  
+    <div class="overlay"></div>
+  
+    <div class="hero-content">
+      <h1>Auli</h1>
+      <p>"The Switzerland of India" — Auli is a popular ski destination.</p>
+      <button class="book-btn">Book Now</button>
+    </div>
+  </section>
+  <div class="rating">
+    ⭐⭐⭐⭐⭐
+    <p>4.8/5 based on 800+ reviews</p>
+  </div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- HOW TO REACH -->
+  <div class="card">
+    <h2>🚗 How to Reach<br>📍 View Route on Map</h2>
+    <div class="map-box">
+  
+        <a href="https://www.google.com/maps/dir/Dehradun/auli" target="_blank">
+            <iframe 
+              src="https://www.google.com/maps?q=auli&output=embed"
+      width="100%" 
+      height="300" 
+      style="border:0; border-radius:10px;"
+      loading="lazy">
+    </iframe>
+  </a>
+
+</div>
+  </div>
+  
+  <section class="gallery">
+    <h2>📸 Gallery</h2>
+  
+    <div class="gallery-row">
+      <img src="auli.jpeg">
+      <img src="chopta.jpeg">
+      <img src="roopkund.jpg">
+    </div>
+  </section>
+  <!-- STAY -->
+  <div class="card">
+    <h2>🏨 Stay Options</h2>
+    <p>
+        Hotels and resorts in Auli for skiing and trekking.    </p>
+  </div>
+
+  <!-- FOOD -->
+  <div class="card">
+    <h2>🍜 Food</h2>
+    <p>
+      Local cuisine and international options available in resorts.
+    </p>
+  </div>
+
+  <!-- COST -->
+  <div class="card">
+    <h2>💰 Cost</h2>
+    <p>
+        Cost: ₹3,000 – ₹8,000 per person (Includes travel, stay, food – depends on season)
+    </p>
+  </div>
+
+  <!-- TIME -->
+  <div class="card">
+    <h2>⏱️ Duration</h2>
+    <p>
+        Duration: 2–4 days for skiing and sightseeing
+    </p>
+  </div>
+
+
+</div>
+<section class="about">
+    <h2>🏔️ About Auli</h2>
+    <p>
+        Auli is a hill station and ski destination in the Chamoli district of Uttarakhand. 
+        It is known for its slopes and is a part of the famous skiing destinations in India.
+    </p>
+  </section>
+<script>
+    document.querySelector(".book-btn").onclick = function(){
+      localStorage.setItem("destination", "Auli");
+      window.location.href = "booking.html";
+    };
+    (function(){
+      var b = document.querySelector(".book-btn");
+      var e = document.createElement("button");
+      e.className = "book-btn";
+      e.type = "button";
+      e.textContent = "Place enquiry";
+      e.style.marginLeft = "10px";
+      e.style.background = "#0f766e";
+      e.onclick = function(){ window.location.href = "place-detail.html?place=auli"; };
+      b.insertAdjacentElement("afterend", e);
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Family Badrinath Package</title>
+
+  <style>
+
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#0b1d2a;
+      color:white;
+    }
+
+    header{
+      background:black;
+      padding:20px;
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    .container{
+      padding:20px;
+      max-width:1000px;
+      margin:auto;
+    }
+
+    .card{
+      background:#132f44;
+      padding:20px;
+      margin-bottom:20px;
+      border-radius:12px;
+    }
+
+    h2{
+      color:#00c3ff;
+      margin-bottom:15px;
+    }
+
+    ul{
+      line-height:1.9;
+    }
+
+    .price{
+      font-size:28px;
+      color:#00ffcc;
+      font-weight:bold;
+    }
+
+    input,
+    textarea,
+    button,
+    select{
+      width:100%;
+      padding:12px;
+      margin:8px 0;
+      border:none;
+      border-radius:6px;
+      font-size:15px;
+      box-sizing:border-box;
+    }
+
+    button{
+      background:#00c3ff;
+      color:black;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#00a8dd;
+    }
+
+    label{
+      display:block;
+      margin-top:10px;
+      margin-bottom:5px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+  Family Badrinath Package
+</header>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+
+  <div class="card">
+
+    <h2>📍 Package Overview</h2>
+
+    <p><b>Duration:</b> 4 Days / 3 Nights</p>
+
+    <p><b>Route:</b> Haridwar → Devprayag → Joshimath → Badrinath → Mana Village</p>
+
+    <p><b>Type:</b> Family Friendly Package</p>
+
+    <p class="price">₹14,999 / Person</p>
+
+  </div>
+
+  <!-- DAY 1 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 1: Travel to Joshimath</h2>
+
+    <ul>
+      <li><b>06:00 AM:</b> Depart Haridwar / Rishikesh</li>
+      <li><b>11:00 AM:</b> Arrive Devprayag for photo stop</li>
+      <li><b>03:00 PM:</b> Reach Joshimath and check-in</li>
+      <li><b>Evening:</b> Family time in hotel and rest</li>
+    </ul>
+
+  </div>
+
+  <!-- DAY 2 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 2: Relaxed Badrinath Day</h2>
+
+    <ul>
+      <li><b>08:00 AM:</b> Drive to Badrinath Temple</li>
+      <li><b>10:00 AM:</b> Darshan and local sightseeing</li>
+      <li><b>01:00 PM:</b> Lunch and visit Mana Village</li>
+      <li><b>05:00 PM:</b> Return to Joshimath hotel</li>
+    </ul>
+
+  </div>
+
+  <!-- DAY 3 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 3: Local Sightseeing</h2>
+
+    <ul>
+      <li><b>09:00 AM:</b> Visit Narsingh Temple and Shankracharya Samadhi</li>
+      <li><b>12:00 PM:</b> Explore Auli viewpoint and local gardens</li>
+      <li><b>04:00 PM:</b> Return to hotel for family dinner</li>
+    </ul>
+
+  </div>
+
+  <!-- DAY 4 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 4: Return Journey</h2>
+
+    <ul>
+      <li><b>08:00 AM:</b> Depart Joshimath for Haridwar</li>
+      <li><b>01:00 PM:</b> Lunch at Rudraprayag</li>
+      <li><b>06:00 PM:</b> Reach Haridwar / Rishikesh</li>
+    </ul>
+
+  </div>
+
+  <!-- INCLUSIONS -->
+
+  <div class="card">
+
+    <h2>✅ Inclusions</h2>
+
+    <ul>
+      <li>Family room accommodation</li>
+      <li>3 Nights stay with meals</li>
+      <li>Private transport and local guide</li>
+      <li>Child-friendly facilities and sightseeing</li>
+    </ul>
+
+  </div>
+
+  <!-- BOOKING FORM -->
+
+  <div class="card">
+
+    <h2>📩 Booking Form</h2>
+
+    <form id="bookingForm">
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Full Name"
+        required
+      >
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Email Address"
+        required
+      >
+
+      <input
+        type="tel"
+        id="mobile"
+        placeholder="Mobile Number"
+        required
+      >
+
+      <input
+        type="number"
+        id="people"
+        placeholder="Number of People"
+        min="1"
+        required
+      >
+
+      <label>Preferred Travel Date</label>
+
+      <input
+        type="date"
+        id="traveldate"
+        required
+      >
+
+      <input
+        type="text"
+        id="pickupCity"
+        placeholder="Pickup City"
+        required
+      >
+
+      <input
+        type="text"
+        id="age"
+        placeholder="Age Details"
+        required
+      >
+
+      <label>Medical Certificate</label>
+
+      <input
+        type="file"
+        required
+      >
+
+      <label>Upload Aadhaar / ID Proof</label>
+
+      <input
+        type="file"
+        required
+      >
+
+      <button type="submit">
+        Continue To Payment
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+
+document
+.getElementById("bookingForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    // GET FORM VALUES
+
+    var bookingData = {
+
+        customerName:
+            document.getElementById("name").value,
+
+        customerEmail:
+            document.getElementById("email").value,
+
+        customerPhone:
+            document.getElementById("mobile").value,
+
+        guests:
+            document.getElementById("people").value,
+
+        travelDate:
+            document.getElementById("traveldate").value,
+
+        pickupCity:
+            document.getElementById("pickupCity").value,
+
+        age:
+            document.getElementById("age").value,
+
+        destination:
+            "Badrinath",
+
+        packageName:
+            "Family Badrinath Package",
+
+        packageDays:
+            "4 Days / 3 Nights",
+
+        packagePrice:
+            "14999"
+    };
+
+    // SAVE BOOKING DATA
+
+    localStorage.setItem(
+        "garhKumoBooking",
+        JSON.stringify(bookingData)
+    );
+
+    // SAVE ENQUIRY FOR ADMIN PANEL
+
+    let enquiries =
+        JSON.parse(localStorage.getItem("enquiries")) || [];
+
+    enquiries.push({
+
+        name:
+            bookingData.customerName,
+
+        email:
+            bookingData.customerEmail,
+
+        phone:
+            bookingData.customerPhone,
+
+        persons:
+            bookingData.guests,
+
+        date:
+            bookingData.travelDate,
+
+        destination:
+            bookingData.destination,
+
+        package:
+            bookingData.packageName,
+
+        pickupCity:
+            bookingData.pickupCity,
+
+        age:
+            bookingData.age
+
+    });
+
+    localStorage.setItem(
+        "enquiries",
+        JSON.stringify(enquiries)
+    );
+
+    // REDIRECT TO PAYMENT PAGE
+
+    window.location.href = "payment.html";
+
+});
+
+</script>
+
+</body>
+</html>

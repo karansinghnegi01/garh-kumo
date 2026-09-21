@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chopta Travel Guide</title>
+  <link rel="stylesheet" href="badrinath.css">
+</head>
+
+<body>
+  
+<div class="home-btn" onclick="window.location.href='index.html'">🏠 Home</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <img src="chopta3.jpeg" class="hero-bg">
+  
+    <div class="overlay"></div>
+  
+    <div class="hero-content">
+      <h1>Chopta</h1>
+      <p>"Mini Switzerland of India" — Gateway to Tungnath and Chandrashila.</p>
+      <button class="book-btn">View Packages</button>
+    </div>
+  </section>
+  <div class="rating">
+    ⭐⭐⭐⭐⭐
+    <p>4.8/5 based on 900+ reviews</p>
+  </div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- HOW TO REACH -->
+  <div class="card">
+    <h2>🚗 How to Reach<br>📍 View Route on Map</h2>
+    <div class="map-box">
+  
+        <a href="https://www.google.com/maps/dir/Dehradun/chopta" target="_blank">
+            <iframe 
+              src="https://www.google.com/maps?q=chopta&output=embed"
+      width="100%" 
+      height="300" 
+      style="border:0; border-radius:10px;"
+      loading="lazy">
+    </iframe>
+  </a>
+
+</div>
+  </div>
+  
+  <section class="gallery">
+    <h2>📸 Gallery</h2>
+  
+    <div class="gallery-row">
+      <img src="chopta.jpeg">
+      <img src="chopta3.jpeg">
+      <img src="auli.jpeg">
+    </div>
+  </section>
+  <!-- STAY -->
+  <div class="card">
+    <h2>🏨 Stay Options</h2>
+    <p>
+        Resorts and camps in Chopta for trekking and nature lovers.    </p>
+  </div>
+
+  <!-- FOOD -->
+  <div class="card">
+    <h2>🍜 Food</h2>
+    <p>
+      Local Garhwali food and simple meals in resorts.
+    </p>
+  </div>
+
+  <!-- COST -->
+  <div class="card">
+    <h2>💰 Cost</h2>
+    <p>
+        Cost: ₹2,500 – ₹6,000 per person (Includes travel, stay, food – depends on trek)
+    </p>
+  </div>
+
+  <!-- TIME -->
+  <div class="card">
+    <h2>⏱️ Duration</h2>
+    <p>
+        Duration: 2–5 days for trekking and sightseeing
+    </p>
+  </div>
+
+
+</div>
+<section class="about">
+    <h2>🌲 About Chopta</h2>
+    <p>
+        Chopta is a small hill station in the Rudraprayag district of Uttarakhand. 
+        It is known for its meadows, forests, and as the base for trekking to Tungnath, the highest Shiva temple.
+    </p>
+  </section>
+<script>
+    document.querySelector(".book-btn").onclick = function(){
+      localStorage.setItem("destination", "Chopta");
+      window.location.href = "chopta_pakages.html";
+    };
+    (function(){
+      var b = document.querySelector(".book-btn");
+      var e = document.createElement("button");
+      e.className = "book-btn";
+      e.type = "button";
+      e.textContent = "Place enquiry";
+      e.style.marginLeft = "10px";
+      e.style.background = "#0f766e";
+      e.onclick = function(){ window.location.href = "place-detail.html?place=chopta"; };
+      b.insertAdjacentElement("afterend", e);
+    })();
+</script>
+</body>
+</html>

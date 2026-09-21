@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nainital Travel Guide</title>
+  <link rel="stylesheet" href="nainital.css">
+</head>
+
+<body>
+
+<div class="home-btn" onclick="window.location.href='index.html'">🏠 Home</div>
+  
+<!-- HERO SECTION -->
+<section class="hero">
+    <img src="nainital.jpeg" class="hero-bg">
+  
+    <div class="overlay"></div>
+  
+    <div class="hero-content">
+      <h1>Nainital</h1>
+      <p>"Finding peace in the heart of the Lake City</p>
+      <button class="book-btn">View packages</button>
+    </div>
+  </section>
+  <div class="rating">
+    ⭐⭐⭐⭐⭐
+    <p>5/5 based on 1200+ reviews</p>
+  </div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- HOW TO REACH -->
+  <div class="card">
+    <h2>🚗 How to Reach<br>📍 View Route on Map</h2>
+    <div class="map-box">
+  
+  <a href="https://www.google.com/maps/dir/Dehradun/nainital" target="_blank">
+    <iframe 
+      src="https://www.google.com/maps?q=nainital&output=embed"
+      width="100%" 
+      height="300" 
+      style="border:0; border-radius:10px;"
+      loading="lazy">
+    </iframe>
+  </a>
+
+</div>
+  </div>
+  
+  <section class="gallery">
+    <h2>📸 Gallery</h2>
+  
+    <div class="gallery-row">
+      <img src="nainital.jpeg">
+      <img src="nainitaldrivenresort.jpg">
+      <img src="nainitallakeview.jpg">
+    </div>
+  </section>
+  <!-- STAY -->
+  <div class="card">
+    <h2>🏨 Stay Options</h2>
+          <img src="nainiretreat.jpg">
+
+    <p>
+        Hotels in Nainital   </p>
+  </div>
+
+  <!-- FOOD -->
+  <div class="card">
+    <h2>🍜 Food</h2>
+    <p>
+        Nainital offers a mix of Kumaoni and North Indian food, known for its street food, cafes, and traditional dishes.    </p>
+  </div>
+
+  <!-- COST -->
+  <div class="card">
+    <h2>💰 Cost</h2>
+    <p>
+    Cost: ₹4,000 – ₹8,000 per person
+    </p>
+  </div>
+
+  <!-- TIME -->
+  <div class="card">
+    <h2>⏱️ Duration</h2>
+    <p>
+        Duration: 2–4 days for complete trip
+    </p>
+  </div>
+
+
+</div>
+<section class="about">
+    <h2>🌊 About Nainital</h2>
+    <p>
+        Nainital is a popular hill station in Kumaon, known for Naini Lake, colonial charm, and views of the surrounding mountains.
+        It is ideal for boating, short treks, and relaxed family holidays.
+    </p>
+  </section>
+<script>
+    document.querySelector(".book-btn").onclick = function(){
+      localStorage.setItem("destination", "Nainital");
+      window.location.href = "nainital_pakages.html";
+    };
+    (function(){
+      var b = document.querySelector(".book-btn");
+      var e = document.createElement("button");
+      e.className = "book-btn";
+      e.type = "button";
+      e.textContent = "Place enquiry";
+      e.style.marginLeft = "10px";
+      e.style.background = "#0f766e";
+      e.onclick = function(){ window.location.href = "place-detail.html?place=nainital"; };
+      b.insertAdjacentElement("afterend", e);
+    })();
+    </script>
+</body>
+</html>

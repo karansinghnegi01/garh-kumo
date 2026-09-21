@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mukteshwar Travel Guide</title>
+  <link rel="stylesheet" href="badrinath.css">
+</head>
+
+<body>
+  
+<div class="home-btn" onclick="window.location.href='index.html'">🏠 Home</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <img src="mukteshwar.jpg" class="hero-bg">
+  
+    <div class="overlay"></div>
+  
+    <div class="hero-content">
+      <h1>Mukteshwar</h1>
+      <p>"The Land of Salvation" — Peaceful retreat with stunning views.</p>
+      <button class="book-btn">Book Now</button>
+    </div>
+  </section>
+  <div class="rating">
+    ⭐⭐⭐⭐⭐
+    <p>4.8/5 based on 500+ reviews</p>
+  </div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- HOW TO REACH -->
+  <div class="card">
+    <h2>🚗 How to Reach<br>📍 View Route on Map</h2>
+    <div class="map-box">
+  
+        <a href="https://www.google.com/maps/dir/Dehradun/mukteshwar" target="_blank">
+            <iframe 
+              src="https://www.google.com/maps?q=mukteshwar&output=embed"
+      width="100%" 
+      height="300" 
+      style="border:0; border-radius:10px;"
+      loading="lazy">
+    </iframe>
+  </a>
+
+</div>
+  </div>
+  
+  <section class="gallery">
+    <h2>📸 Gallery</h2>
+  
+    <div class="gallery-row">
+      <img src="mukteshwar.jpg">
+      <img src="nainital.html">
+      <img src="ranikhet.html">
+    </div>
+  </section>
+  <!-- STAY -->
+  <div class="card">
+    <h2>🏨 Stay Options</h2>
+    <p>
+        Cottages and resorts in Mukteshwar for a tranquil stay.    </p>
+  </div>
+
+  <!-- FOOD -->
+  <div class="card">
+    <h2>🍜 Food</h2>
+    <p>
+      Organic food and local delicacies.
+    </p>
+  </div>
+
+  <!-- COST -->
+  <div class="card">
+    <h2>💰 Cost</h2>
+    <p>
+        Cost: ₹3,000 – ₹7,000 per person (Includes travel, stay, food)
+    </p>
+  </div>
+
+  <!-- TIME -->
+  <div class="card">
+    <h2>⏱️ Duration</h2>
+    <p>
+        Duration: 2–4 days for relaxation
+    </p>
+  </div>
+
+
+</div>
+<section class="about">
+    <h2>🏔️ About Mukteshwar</h2>
+    <p>
+        Mukteshwar is a small town in the Nainital district of Uttarakhand. 
+        It is known for its apple orchards, temples, and panoramic views of the Himalayas.
+    </p>
+  </section>
+<script>
+    document.querySelector(".book-btn").onclick = function(){
+      localStorage.setItem("destination", "Mukteshwar");
+      window.location.href = "booking.html";
+    };
+    (function(){
+      var b = document.querySelector(".book-btn");
+      var e = document.createElement("button");
+      e.className = "book-btn";
+      e.type = "button";
+      e.textContent = "Place enquiry";
+      e.style.marginLeft = "10px";
+      e.style.background = "#0f766e";
+      e.onclick = function(){ window.location.href = "place-detail.html?place=mukteshwar"; };
+      b.insertAdjacentElement("afterend", e);
+    })();
+</script>
+</body>
+</html>

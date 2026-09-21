@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Garhkumo Hotels</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="hotels.css">
+
+</head>
+
+<body>
+
+<!-- 🔥 NAVBAR -->
+<nav class="navbar">
+
+  <h1>🏔️ Garhkumo</h1>
+
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Hotels</a></li>
+    <li><a href="#">Treks</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+
+</nav>
+
+
+<!-- 🔥 HERO -->
+<section class="hero">
+
+  <div class="hero-content">
+
+    <h2>
+      Explore Uttarakhand Hotels
+    </h2>
+
+    <p>
+      Luxury stays, mountain resorts & hidden pahadi retreats
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- 🔍 SEARCH -->
+<div class="search-box">
+
+  <input
+    type="text"
+    id="search"
+    placeholder="Search Hotels, Places, Districts..."
+    oninput="searchHotel()"
+  >
+
+</div>
+
+
+<!-- 🔥 FILTERS -->
+<div class="filters">
+
+  <button onclick="displayHotels(hotelsData)">
+    All
+  </button>
+
+  <button onclick="filterCategory('Luxury')">
+    Luxury
+  </button>
+
+  <button onclick="filterCategory('Mid-range')">
+    Mid-range
+  </button>
+
+  <button onclick="filterCategory('Budget')">
+    Budget
+  </button>
+
+  <button onclick="sortHotelsAZ()">
+    A-Z
+  </button>
+
+  <button onclick="sortByPrice()">
+    Lowest Price
+  </button>
+
+  <button onclick="sortByRating()">
+    Top Rated
+  </button>
+
+</div>
+
+
+<!-- 🔥 HOTELS -->
+<div class="container" id="hotelContainer"></div>
+
+
+<!-- 🔥 PANEL -->
+<div class="panel" id="hotelPanel">
+
+  <span class="close-btn"
+  onclick="closePanel()">
+
+    ✖
+
+  </span>
+
+  <div id="panelData"></div>
+
+</div>
+
+
+<!-- 🔥 FOOTER -->
+<footer class="footer">
+
+  <h2>Garhkumo Tourism</h2>
+
+  <p>
+    Explore the soul of Uttarakhand
+  </p>
+
+</footer>
+
+
+<script src="hotels.js"></script>
+
+</body>
+</html>

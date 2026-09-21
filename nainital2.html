@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standard Nainital Tour</title>
+
+  <style>
+
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#0b1d2a;
+      color:white;
+    }
+
+    header{
+      background:black;
+      padding:20px;
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    .container{
+      padding:20px;
+      max-width:1000px;
+      margin:auto;
+    }
+
+    .card{
+      background:#132f44;
+      padding:20px;
+      margin-bottom:20px;
+      border-radius:12px;
+    }
+
+    h2{
+      color:#00c3ff;
+      margin-bottom:15px;
+    }
+
+    ul{
+      line-height:1.9;
+    }
+
+    .price{
+      font-size:28px;
+      color:#00ffcc;
+      font-weight:bold;
+    }
+
+    input,
+    textarea,
+    button,
+    select{
+      width:100%;
+      padding:12px;
+      margin:8px 0;
+      border:none;
+      border-radius:6px;
+      font-size:15px;
+      box-sizing:border-box;
+    }
+
+    button{
+      background:#00c3ff;
+      color:black;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#00a8dd;
+    }
+
+    label{
+      display:block;
+      margin-top:10px;
+      margin-bottom:5px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+Standard Nainital Tour Package
+</header>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+
+  <div class="card">
+
+    <h2>📍 Package Overview</h2>
+
+    <p><b>Duration:</b> 3 Days / 2 Nights</p>
+
+    <p><b>Route:</b> Haridwar → Haldwani → Nainital</p>
+
+    <p><b>Type:</b> Classic Sightseeing Tour</p>
+
+    <p class="price">₹6,999 / Person</p>
+
+  </div>
+
+  <!-- DAY 1 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 1: Arrival and Mall Road</h2>
+
+    <ul>
+
+      <li><b>06:00 AM:</b> Depart Haridwar / Rishikesh</li>
+
+      <li><b>12:30 PM:</b> Arrive Nainital and check in</li>
+
+      <li><b>03:00 PM:</b> Stroll Mall Road and visit the lakefront</li>
+
+      <li><b>Evening:</b> Enjoy sunset views and dinner</li>
+
+    </ul>
+
+  </div>
+
+  <!-- DAY 2 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 2: Nainital Sightseeing</h2>
+
+    <ul>
+
+      <li><b>08:30 AM:</b> Boat ride on Naini Lake</li>
+
+      <li><b>10:30 AM:</b> Visit Eco Cave Gardens and Naina Devi Temple</li>
+
+      <li><b>02:00 PM:</b> Cable car to Snow View Point</li>
+
+      <li><b>05:00 PM:</b> Return to hotel</li>
+
+    </ul>
+
+  </div>
+
+  <!-- DAY 3 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 3: Leisure and Return</h2>
+
+    <ul>
+
+      <li><b>09:00 AM:</b> Visit Tiffin Top or Gurney House</li>
+
+      <li><b>12:00 PM:</b> Lunch and last-minute shopping</li>
+
+      <li><b>02:30 PM:</b> Depart for Haridwar</li>
+
+      <li><b>Night:</b> Reach Haridwar / Rishikesh</li>
+
+    </ul>
+
+  </div>
+
+  <!-- INCLUSIONS -->
+
+  <div class="card">
+
+    <h2>✅ Inclusions</h2>
+
+    <ul>
+
+      <li>2 Nights hotel stay</li>
+
+      <li>Breakfast, lunch, and dinner</li>
+
+      <li>Local sightseeing and transport</li>
+
+      <li>Boat ride and cable car ticket</li>
+
+    </ul>
+
+  </div>
+
+  <!-- BOOKING FORM -->
+
+  <div class="card">
+
+    <h2>📩 Booking Form</h2>
+
+    <form id="bookingForm">
+
+      <input
+      type="text"
+      id="name"
+      placeholder="Full Name"
+      required
+      >
+
+      <input
+      type="email"
+      id="email"
+      placeholder="Email Address"
+      required
+      >
+
+      <input
+      type="tel"
+      id="mobile"
+      placeholder="Mobile Number"
+      required
+      >
+
+      <input
+      type="number"
+      id="people"
+      placeholder="Number of People"
+      min="1"
+      required
+      >
+
+      <label>Preferred Travel Date</label>
+
+      <input
+      type="date"
+      id="traveldate"
+      required
+      >
+
+      <input
+      type="text"
+      id="pickupCity"
+      placeholder="Pickup City"
+      required
+      >
+
+      <input
+      type="text"
+      id="age"
+      placeholder="Age Details"
+      required
+      >
+
+      <label>Medical Certificate</label>
+
+      <input
+      type="file"
+      required
+      >
+
+      <label>Upload Aadhaar / ID Proof</label>
+
+      <input
+      type="file"
+      required
+      >
+
+      <button type="submit">
+      Continue To Payment
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+
+document
+.getElementById("bookingForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    // GET FORM VALUES
+
+    var bookingData = {
+
+        customerName:
+            document.getElementById("name").value,
+
+        customerEmail:
+            document.getElementById("email").value,
+
+        customerPhone:
+            document.getElementById("mobile").value,
+
+        guests:
+            document.getElementById("people").value,
+
+        travelDate:
+            document.getElementById("traveldate").value,
+
+        pickupCity:
+            document.getElementById("pickupCity").value,
+
+        age:
+            document.getElementById("age").value,
+
+        destination:
+            "Nainital",
+
+        packageName:
+            "Standard Nainital Tour Package",
+
+        packageDays:
+            "3 Days / 2 Nights",
+
+        packagePrice:
+            "6999"
+    };
+
+    // SAVE DATA
+
+    localStorage.setItem(
+        "garhKumoBooking",
+        JSON.stringify(bookingData)
+    );
+
+    // REDIRECT
+
+    window.location.href = "payment.html";
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GarhKumo Food Explorer Pro</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f5f7fa;color:#222}
+
+header{background:#0f172a;color:#fff;padding:15px 30px;display:flex;justify-content:space-between}
+nav a{color:#fff;margin:0 10px;text-decoration:none}
+
+.hero{height:50vh;background:url('https://source.unsplash.com/1600x900/?indian-food') center/cover;display:flex;align-items:center;justify-content:center}
+.hero h1{background:rgba(0,0,0,0.6);color:#fff;padding:20px;border-radius:10px}
+
+.container{padding:30px}
+
+.section-title{margin:20px 0;font-size:24px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+
+.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1);transition:0.3s;cursor:pointer}
+.card:hover{transform:translateY(-8px)}
+
+.card img{width:100%;height:180px;object-fit:cover}
+.card .content{padding:15px}
+.card h3{margin-bottom:5px;color:#0f172a}
+.price{color:#16a34a;font-weight:bold}
+.tag{font-size:12px;padding:5px 10px;background:#eee;border-radius:20px}
+
+footer{text-align:center;padding:20px;background:#0f172a;color:#fff;margin-top:30px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>GarhKumo</h2>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="food.html">Food</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Explore Uttarakhand Foods 🍲</h1>
+</div>
+
+<div class="container">
+
+<h2 class="section-title">🔥 Popular Foods</h2>
+<div class="grid" id="popularGrid"></div>
+
+<h2 class="section-title">🍽️ All Foods</h2>
+<div class="grid" id="allGrid"></div>
+
+</div>
+
+<footer>
+  <p>© 2026 GarhKumo</p>
+</footer>
+
+<script>
+
+const foods = [
+  {
+    id:'kafuli',
+    name:'Kafuli',
+    type:'Veg',
+    price:'₹150',
+    popular:true,
+    desc:'Kafuli is a famous Garhwali dish made from spinach and fenugreek leaves. It is rich in nutrients and represents the traditional pahadi lifestyle. This dish is slow cooked to maintain its flavor and is usually served with rice. It is one of the most loved dishes in Uttarakhand.'
+  },
+  {
+    id:'chainsoo',
+    name:'Chainsoo',
+    type:'Veg',
+    price:'₹120',
+    popular:true,
+    desc:'Chainsoo is a traditional dish made from roasted black gram dal. It has a unique smoky flavor and is packed with protein. This dish is commonly eaten in Garhwal and is loved for its rich taste and simplicity.'
+  },
+  {
+    id:'bhatt',
+    name:'Bhatt Ki Churkani',
+    type:'Veg',
+    price:'₹130',
+    popular:true,
+    desc:'Bhatt ki Churkani is a Kumaoni dish made from black soybeans. It is cooked slowly to bring out the earthy flavors. This dish is very nutritious and is a staple in Kumaon region.'
+  }
+];
+
+// generate more foods
+for(let i=1;i<=100;i++){
+  foods.push({
+    id:'dish'+i,
+    name:'Uttarakhand Dish '+i,
+    type:i%2==0?'Veg':'Non-Veg',
+    price:'₹'+(100+i),
+    popular:false,
+    desc:'This is a traditional Uttarakhand dish. It represents local culture, flavors, and ingredients used in the Himalayan region. This dish is loved by locals and tourists for its authentic taste and simplicity.'
+  })
+}
+
+function createCard(food){
+  return `
+  <div class="card" onclick="openDetail('${food.id}')">
+    <img src="https://source.unsplash.com/400x300/?food,${food.name}">
+    <div class="content">
+      <h3>${food.name}</h3>
+      <p class="price">${food.price}</p>
+      <span class="tag">${food.type}</span>
+    </div>
+  </div>`;
+}
+
+function render(){
+  const popularGrid=document.getElementById('popularGrid');
+  const allGrid=document.getElementById('allGrid');
+
+  foods.forEach(food=>{
+    if(food.popular){
+      popularGrid.innerHTML+=createCard(food);
+    }
+    allGrid.innerHTML+=createCard(food);
+  });
+}
+
+function openDetail(id){
+  localStorage.setItem('foodId',id);
+  window.location='food-detail.html';
+}
+
+render();
+
+</script>
+
+</body>
+</html>
+
+
+<!-- ================= DETAIL PAGE ================= -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Food Detail</title>
+<style>
+body{font-family:Arial;background:#111;color:#fff;padding:20px}
+img{width:100%;max-height:300px;object-fit:cover;border-radius:10px}
+.price{color:#22c55e;font-size:20px;margin:10px 0}
+</style>
+</head>
+<body>
+
+<h1 id="name"></h1>
+<img id="img">
+<p id="type"></p>
+<p class="price" id="price"></p>
+<p id="desc"></p>
+
+<script>
+const foods = JSON.parse(localStorage.getItem('foodsData')) || [];
+const id = localStorage.getItem('foodId');
+
+// fallback simple data
+const data = {
+  name:id,
+  type:'Veg/Non-Veg',
+  price:'₹150',
+  desc:'This is a detailed description of the dish. It includes ingredients, preparation method, cultural importance, and taste profile. This helps users understand the food deeply and improves the overall experience of the website.'
+};
+
+document.getElementById('name').innerText=data.name;
+document.getElementById('type').innerText=data.type;
+document.getElementById('price').innerText=data.price;
+document.getElementById('desc').innerText=data.desc;
+document.getElementById('img').src=`https://source.unsplash.com/800x400/?food,${id}`;
+</script>
+
+</body>
+</html>

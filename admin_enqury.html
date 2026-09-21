@@ -1,0 +1,39 @@
+<div class="admin-container">
+  <h2>Customer Enquiries</h2>
+  <table border="1" cellpadding="8">
+    <thead>
+      <tr>
+        <th>Receipt ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Destination</th>
+        <th>Package</th>
+        <th>Guests</th>
+        <th>Travel Date</th>
+        <th>Payment Status</th>
+      </tr>
+    </thead>
+    <tbody id="enquiryTable"></tbody>
+  </table>
+</div>
+
+<script>
+  let enquiries = JSON.parse(localStorage.getItem("enquiries")) || [];
+  let tableBody = document.getElementById("enquiryTable");
+
+  enquiries.forEach(enquiry => {
+    let row = `<tr>
+      <td>${enquiry.receiptId || "—"}</td>
+      <td>${enquiry.customerName || "—"}</td>
+      <td>${enquiry.customerEmail || "—"}</td>
+      <td>${enquiry.customerPhone || "—"}</td>
+      <td>${enquiry.destination || "—"}</td>
+      <td>${enquiry.packageName || "—"}</td>
+      <td>${enquiry.guests || "—"}</td>
+      <td>${enquiry.travelDate || "—"}</td>
+      <td>${enquiry.paymentStatus || "Pending"}</td>
+    </tr>`;
+    tableBody.innerHTML += row;
+  });
+</script>

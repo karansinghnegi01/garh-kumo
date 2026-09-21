@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Badrinath Travel Guide</title>
+  <link rel="stylesheet" href="badrinath.css">
+</head>
+
+<body>
+
+<div class="home-btn" onclick="window.location.href='index.html'">🏠 Home</div>
+  
+<!-- HERO SECTION -->
+<section class="hero">
+    <img src="badrinath.jpeg" class="hero-bg">
+  
+    <div class="overlay"></div>
+  
+    <div class="hero-content">
+      <h1>Badrinath</h1>
+      <p>"Jai Badri Vishal ki" — Hail Lord Badrinath.</p>
+      <button class="book-btn">View packages</button>
+    </div>
+  </section>
+  <div class="rating">
+    ⭐⭐⭐⭐⭐
+    <p>5/5 based on 1200+ reviews</p>
+  </div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- HOW TO REACH -->
+  <div class="card">
+    <h2>🚗 How to Reach<br>📍 View Route on Map</h2>
+    <div class="map-box">
+  
+        <a href="https://www.google.com/maps/dir/Dehradun/badrinath" target="_blank">
+            <iframe 
+              src="https://www.google.com/maps?q=badrinath&output=embed"
+      width="100%" 
+      height="300" 
+      style="border:0; border-radius:10px;"
+      loading="lazy">
+    </iframe>
+  </a>
+
+</div>
+  </div>
+  
+  <section class="gallery">
+    <h2>📸 Gallery</h2>
+  
+    <div class="gallery-row">
+      <img src="badrinath.jpeg">
+      <img src="#">
+      <img src="badrinathdrivenresort.jpg">
+    </div>
+  </section>
+  <!-- STAY -->
+  <div class="card">
+    <h2>🏨 Stay Options</h2>
+          <img src="badrinathdrivenresort.jpg">
+
+    <p>
+        Hotels in Badrinath    </p>
+  </div>
+
+  <!-- FOOD -->
+  <div class="card">
+    <h2>🍜 Food</h2>
+    <p>
+      Simple vegetarian food like Maggi, Paratha, Dal Rice available.
+    </p>
+  </div>
+
+  <!-- COST -->
+  <div class="card">
+    <h2>💰 Cost</h2>
+    <p>
+        Cost: ₹5,000 – ₹10,000 per person (Includes travel, stay, food – depends on budget)
+    </p>
+  </div>
+
+  <!-- TIME -->
+  <div class="card">
+    <h2>⏱️ Duration</h2>
+    <p>
+        Duration: 2–3 days for complete trip
+    </p>
+  </div>
+
+
+</div>
+<section class="about">
+    <h2>🛕 About Badrinath</h2>
+    <p>
+        Badrinath is one of the most important pilgrimage sites in India, located in the Chamoli district of Uttarakhand. 
+        It is a part of the famous Char Dham Yatra and is dedicated to Lord Vishnu.
+    </p>
+  </section>
+<script>
+    document.querySelector(".book-btn").onclick = function(){
+      localStorage.setItem("destination", "Badrinath");
+      window.location.href = "badrinath_pakages.html";
+    };
+    (function(){
+      var b = document.querySelector(".book-btn");
+      var e = document.createElement("button");
+      e.className = "book-btn";
+      e.type = "button";
+      e.textContent = "Place enquiry";
+      e.style.marginLeft = "10px";
+      e.style.background = "#0f766e";
+      e.onclick = function(){ window.location.href = "place-detail.html?place=badrinath"; };
+      b.insertAdjacentElement("afterend", e);
+    })();
+    </script>
+</body>
+</html>
