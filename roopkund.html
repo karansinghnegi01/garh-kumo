@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roopkund Travel Guide</title>
+  <link rel="stylesheet" href="badrinath.css">
+</head>
+
+<body>
+  
+<div class="home-btn" onclick="window.location.href='index.html'">🏠 Home</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <img src="roopkund.jpg" class="hero-bg">
+  
+    <div class="overlay"></div>
+  
+    <div class="hero-content">
+      <h1>Roopkund</h1>
+      <p>"Mystery Lake" — High-altitude glacial lake with ancient secrets.</p>
+      <button class="book-btn">View Packages</button>
+    </div>
+  </section>
+  <div class="rating">
+    ⭐⭐⭐⭐⭐
+    <p>4.9/5 based on 500+ reviews</p>
+  </div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- HOW TO REACH -->
+  <div class="card">
+    <h2>🚗 How to Reach<br>📍 View Route on Map</h2>
+    <div class="map-box">
+  
+        <a href="https://www.google.com/maps/dir/Dehradun/roopkund" target="_blank">
+            <iframe 
+              src="https://www.google.com/maps?q=roopkund&output=embed"
+      width="100%" 
+      height="300" 
+      style="border:0; border-radius:10px;"
+      loading="lazy">
+    </iframe>
+  </a>
+
+</div>
+  </div>
+  
+  <section class="gallery">
+    <h2>📸 Gallery</h2>
+  
+    <div class="gallery-row">
+      <img src="roopkund.jpg">
+      <img src="#">
+      <img src="#">
+    </div>
+  </section>
+  <!-- STAY -->
+  <div class="card">
+    <h2>🏨 Stay Options</h2>
+          <img src="roopkundtrek.jpg">
+
+    <p>
+        Camps and homestays near Roopkund for trekkers.    </p>
+  </div>
+
+  <!-- FOOD -->
+  <div class="card">
+    <h2>🍜 Food</h2>
+    <p>
+      Packaged food and camp meals during trek.
+    </p>
+  </div>
+
+  <!-- COST -->
+  <div class="card">
+    <h2>💰 Cost</h2>
+    <p>
+        Cost: ₹5,000 – ₹12,000 per person (Includes trek, stay, food – guided trek)
+    </p>
+  </div>
+
+  <!-- TIME -->
+  <div class="card">
+    <h2>⏱️ Duration</h2>
+    <p>
+        Duration: 5–7 days for the trek
+    </p>
+  </div>
+
+
+</div>
+<section class="about">
+    <h2>🏔️ About Roopkund</h2>
+    <p>
+        Roopkund is a glacial lake in the Uttarakhand Himalayas, famous for the hundreds of human skeletons found at its bottom. 
+        It is a challenging trek destination with stunning views and historical mystery.
+    </p>
+  </section>
+<script>
+    document.querySelector(".book-btn").onclick = function(){
+      localStorage.setItem("destination", "Roopkund");
+      window.location.href = "roopkund_pakages.html";
+    };
+    (function(){
+      var b = document.querySelector(".book-btn");
+      var e = document.createElement("button");
+      e.className = "book-btn";
+      e.type = "button";
+      e.textContent = "Place enquiry";
+      e.style.marginLeft = "10px";
+      e.style.background = "#0f766e";
+      e.onclick = function(){ window.location.href = "place-detail.html?place=roopkund"; };
+      b.insertAdjacentElement("afterend", e);
+    })();
+</script>
+</body>
+</html>

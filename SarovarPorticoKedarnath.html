@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sarovar Portico Kedarnath - Full Hotel Experience</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6f8;
+  color:#222;
+}
+
+.header{
+  height:45vh;
+  background:url('https://source.unsplash.com/1600x900/?himalaya,hotel,mountain') center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  position:relative;
+}
+
+.header::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+}
+
+.header h1{
+  position:relative;
+  z-index:1;
+  font-size:36px;
+  text-align:center;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+.section{
+  background:white;
+  padding:22px;
+  border-radius:14px;
+  margin:20px 0;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.title{
+  font-size:22px;
+  border-left:6px solid #ff6600;
+  padding-left:10px;
+  margin-bottom:15px;
+}
+
+.room{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  margin:20px 0;
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+}
+
+.slider{
+  position:relative;
+  overflow:hidden;
+  height:100%;
+}
+
+.slider img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
+}
+
+.slider img.active{
+  display:block;
+}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:white;
+  border:none;
+  padding:8px;
+  cursor:pointer;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+.content{padding:18px;}
+
+.price{color:green;font-size:20px;font-weight:bold;}
+
+.badge{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  background:#e8f5e9;
+  color:#2e7d32;
+  font-size:12px;
+}
+
+.bar{
+  width:100%;
+  height:10px;
+  background:#eee;
+  border-radius:20px;
+  overflow:hidden;
+  margin:8px 0;
+}
+
+.fill{
+  height:100%;
+  background:linear-gradient(90deg,#ff9800,#4caf50);
+}
+
+.btn{
+  display:inline-block;
+  padding:10px 18px;
+  background:#ff6600;
+  color:white;
+  border-radius:8px;
+  text-decoration:none;
+  margin-top:10px;
+}
+
+.btn:hover{background:#e65c00;}
+
+@media(max-width:768px){
+  .room{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>Sarovar Portico Kedarnath<br>Full Hotel Experience</h1>
+</div>
+
+<div class="container">
+
+<div class="section">
+  <div class="title">About Property</div>
+  <p>Premium Himalayan hotel near Kedarnath Temple offering comfort, safety and warm stay in extreme mountain conditions.</p>
+</div>
+
+<!-- SINGLE ROOM -->
+<div class="room">
+
+  <div class="slider" id="singleSlider">
+    <img class="active" src="https://source.unsplash.com/800x600/?single,hotel,room">
+    <img src="https://source.unsplash.com/800x600/?hotel,bedroom">
+    <img src="https://source.unsplash.com/800x600/?mountain,room">
+
+    <button class="slider-btn prev" onclick="changeSlide('single',-1)">❮</button>
+    <button class="slider-btn next" onclick="changeSlide('single',1)">❯</button>
+  </div>
+
+  <div class="content">
+    <h2>Single Room</h2>
+    <p>Solo comfortable stay with full privacy.</p>
+    <p class="price">₹2800 / Night</p>
+    <span class="badge">Private Room</span>
+    <p>Available: 4 | Occupied: 6</p>
+    <div class="bar"><div class="fill" style="width:60%"></div></div>
+    <a class="btn" href="place-detail.html?place=kedarnath">Book Now</a>
+  </div>
+</div>
+
+<!-- DOUBLE ROOM -->
+<div class="room">
+
+  <div class="slider" id="doubleSlider">
+    <img class="active" src="https://source.unsplash.com/800x600/?double,hotel,room">
+    <img src="https://source.unsplash.com/800x600/?luxury,hotel,room">
+    <img src="https://source.unsplash.com/800x600/?mountain,hotel-room">
+
+    <button class="slider-btn prev" onclick="changeSlide('double',-1)">❮</button>
+    <button class="slider-btn next" onclick="changeSlide('double',1)">❯</button>
+  </div>
+
+  <div class="content">
+    <h2>Double Room</h2>
+    <p>Best for couples with mountain view.</p>
+    <p class="price">₹3636 / Night</p>
+    <span class="badge">Most Popular</span>
+    <p>Available: 3 | Occupied: 9</p>
+    <div class="bar"><div class="fill" style="width:75%"></div></div>
+    <a class="btn" href="place-detail.html?place=kedarnath">Book Now</a>
+  </div>
+</div>
+
+<!-- FAMILY ROOM -->
+<div class="room">
+
+  <div class="slider" id="familySlider">
+    <img class="active" src="https://source.unsplash.com/800x600/?family,hotel,room">
+    <img src="https://source.unsplash.com/800x600/?suite,hotel">
+    <img src="https://source.unsplash.com/800x600/?large,hotel-room">
+
+    <button class="slider-btn prev" onclick="changeSlide('family',-1)">❮</button>
+    <button class="slider-btn next" onclick="changeSlide('family',1)">❯</button>
+  </div>
+
+  <div class="content">
+    <h2>Family Room</h2>
+    <p>Spacious stay for family groups.</p>
+    <p class="price">₹5200 / Night</p>
+    <span class="badge">Large Space</span>
+    <p>Available: 2 | Occupied: 8</p>
+    <div class="bar"><div class="fill" style="width:80%"></div></div>
+    <a class="btn" href="place-detail.html?place=kedarnath">Book Now</a>
+  </div>
+</div>
+
+</div>
+
+<script>
+const slides = {
+  single:0,
+  double:0,
+  family:0
+};
+
+function changeSlide(type,dir){
+  const slider = document.getElementById(type+"Slider");
+  const images = slider.querySelectorAll("img");
+
+  images[slides[type]].classList.remove("active");
+
+  slides[type] = (slides[type] + dir + images.length) % images.length;
+
+  images[slides[type]].classList.add("active");
+}
+
+// AUTO SLIDESHOW
+function autoSlide(type){
+  setInterval(()=>{
+    changeSlide(type,1);
+  }, 3000);
+}
+
+autoSlide('single');
+autoSlide('double');
+autoSlide('family');
+
+</script>
+
+</body>
+</html>
