@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ranikhet Travel Guide</title>
+  <link rel="stylesheet" href="badrinath.css">
+</head>
+
+<body>
+  
+<div class="home-btn" onclick="window.location.href='index.html'">🏠 Home</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <img src="ranikhet.jpg" class="hero-bg">
+  
+    <div class="overlay"></div>
+  
+    <div class="hero-content">
+      <h1>Ranikhet</h1>
+      <p>"The Queen of Hills" — Serene hill station with panoramic views.</p>
+      <button class="book-btn">Book Now</button>
+    </div>
+  </section>
+  <div class="rating">
+    ⭐⭐⭐⭐⭐
+    <p>4.7/5 based on 700+ reviews</p>
+  </div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+  <!-- HOW TO REACH -->
+  <div class="card">
+    <h2>🚗 How to Reach<br>📍 View Route on Map</h2>
+    <div class="map-box">
+  
+        <a href="https://www.google.com/maps/dir/Dehradun/ranikhet" target="_blank">
+            <iframe 
+              src="https://www.google.com/maps?q=ranikhet&output=embed"
+      width="100%" 
+      height="300" 
+      style="border:0; border-radius:10px;"
+      loading="lazy">
+    </iframe>
+  </a>
+
+</div>
+  </div>
+  
+  <section class="gallery">
+    <h2>📸 Gallery</h2>
+  
+    <div class="gallery-row">
+      <img src="ranikhet.jpg">
+      <img src="nainital.html">
+      <img src="almora.html">
+    </div>
+  </section>
+  <!-- STAY -->
+  <div class="card">
+    <h2>🏨 Stay Options</h2>
+    <p>
+        Resorts and hotels in Ranikhet for a relaxing vacation.    </p>
+  </div>
+
+  <!-- FOOD -->
+  <div class="card">
+    <h2>🍜 Food</h2>
+    <p>
+      Local food and cafe options.
+    </p>
+  </div>
+
+  <!-- COST -->
+  <div class="card">
+    <h2>💰 Cost</h2>
+    <p>
+        Cost: ₹2,500 – ₹6,000 per person (Includes travel, stay, food)
+    </p>
+  </div>
+
+  <!-- TIME -->
+  <div class="card">
+    <h2>⏱️ Duration</h2>
+    <p>
+        Duration: 2–4 days for sightseeing
+    </p>
+  </div>
+
+
+</div>
+<section class="about">
+    <h2>🌄 About Ranikhet</h2>
+    <p>
+        Ranikhet is a hill station in the Almora district of Uttarakhand. 
+        It is known for its pine forests, temples, and views of the Himalayas.
+    </p>
+  </section>
+<script>
+    document.querySelector(".book-btn").onclick = function(){
+      localStorage.setItem("destination", "Ranikhet");
+      window.location.href = "booking.html";
+    };
+    (function(){
+      var b = document.querySelector(".book-btn");
+      var e = document.createElement("button");
+      e.className = "book-btn";
+      e.type = "button";
+      e.textContent = "Place enquiry";
+      e.style.marginLeft = "10px";
+      e.style.background = "#0f766e";
+      e.onclick = function(){ window.location.href = "place-detail.html?place=ranikhet"; };
+      b.insertAdjacentElement("afterend", e);
+    })();
+</script>
+</body>
+</html>
