@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GarhKumo Trekking</title>
+
+<style>
+body{margin:0;font-family:'Segoe UI';background:#0f172a;color:#fff}
+
+header{
+  padding:15px 30px;
+  background:#020617;
+}
+
+.section{padding:30px}
+
+.slider{
+  display:flex;
+  gap:15px;
+  overflow-x:auto;
+}
+
+/* CARD */
+.card{
+  min-width:250px;
+  height:320px;
+  border-radius:15px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover{transform:scale(1.05)}
+
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.overlay{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
+  padding:15px;
+}
+
+.price{color:#22c55e}
+
+/* DETAIL SECTION */
+.detail{
+  display:none;
+  padding:30px;
+  background:#111827;
+}
+
+.hero{
+  height:300px;
+  background-size:cover;
+  border-radius:10px;
+}
+
+button{
+  padding:10px;
+  margin:10px 5px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.book{background:#22c55e}
+.enquire{background:#38bdf8}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>GarhKumo Trekking</h2>
+</header>
+
+<div class="section">
+  <h2>🏔️ Treks</h2>
+  <div class="slider" id="trekGrid"></div>
+</div>
+
+<!-- DETAIL SAME PAGE -->
+<div class="detail" id="detailBox">
+  <div class="hero" id="hero"></div>
+  
+  <h2 id="name"></h2>
+  <p id="meta"></p>
+  <p id="price"></p>
+  <p id="desc"></p>
+
+  <button class="book" onclick="book()">Book Now</button>
+  <button class="enquire" onclick="enquire()">Enquire</button>
+</div>
+
+<script>
+
+const treks = [
+  {
+    name:'Kedarnath Trek',
+    price:'₹7999',
+    days:'5 Days',
+    difficulty:'Moderate',
+    img:'kedartrek.jpeg'
+  },
+  {
+    name:'Valley of Flowers',
+    price:'₹9999',
+    days:'6 Days',
+    difficulty:'Easy',
+    img:'valltrek.jpeg'
+  }
+];
+
+// more data
+for(let i=1;i<=20;i++){
+  treks.push({
+    name:'Trek '+i,
+    price:'₹'+(5000+i*200),
+    days:(3+i%5)+' Days',
+    difficulty:i%2==0?'Easy':'Moderate',
+    img:`https://source.unsplash.com/400x300/?mountain,trek,${i}`
+  });
+}
+
+function render(){
+  const grid=document.getElementById('trekGrid');
+  
+  treks.forEach((t,index)=>{
+    grid.innerHTML+=`
+    <div class="card" onclick="showDetail(${index})">
+      <img src="${t.img}">
+      <div class="overlay">
+        <h3>${t.name}</h3>
+        <p>${t.days} • ${t.difficulty}</p>
+        <div class="price">${t.price}</div>
+      </div>
+    </div>`;
+  });
+}
+
+function showDetail(i){
+  const t = treks[i];
+
+  document.getElementById('detailBox').style.display='block';
+
+  document.getElementById('hero').style.backgroundImage=`url(${t.img})`;
+  document.getElementById('name').innerText=t.name;
+  document.getElementById('meta').innerText=t.days+' • '+t.difficulty;
+  document.getElementById('price').innerText=t.price;
+  document.getElementById('desc').innerText=
+  'This trek offers beautiful Himalayan views, forests, and adventure experience. Perfect for nature lovers and beginners.';
+
+  // auto scroll to detail
+  document.getElementById('detailBox').scrollIntoView({behavior:'smooth'});
+}
+
+function book(){
+  window.open("https://wa.me/91XXXXXXXXXX?text=I want to book this trek");
+}
+
+function enquire(){
+  alert("We will contact you soon!");
+}
+
+render();
+
+</script>
+
+</body>
+</html>
