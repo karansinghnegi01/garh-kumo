@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place details | GarhKumo</title>
+  <link rel="stylesheet" href="booking.css" />
+  <style>
+    .place-hero {
+      max-width: 640px;
+      margin: 0 auto 24px;
+      padding: 20px;
+      background: linear-gradient(135deg, #0f766e, #0ea5a4);
+      color: #fff;
+      border-radius: 12px;
+    }
+    .place-hero h1 { margin: 0 0 10px; font-size: 1.75rem; }
+    .place-hero p { margin: 0; opacity: 0.95; line-height: 1.5; }
+    .place-links { margin-top: 14px; }
+    .place-links a {
+      color: #fff;
+      font-weight: bold;
+      margin-right: 16px;
+    }
+    .unknown-place {
+      color: #b45309;
+      background: #fffbeb;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="index.html">Home</a>
+    <a class="btn" href="alldestination.html">All destinations</a>
+  </header>
+
+  <div class="form" style="max-width: 520px; margin: 24px auto;">
+    <div id="placeHero" class="place-hero">
+      <h1 id="placeTitle">Uttarakhand</h1>
+      <p id="placeTagline">Send us your travel dates and group size — we will confirm on your receipt after you submit.</p>
+      <div class="place-links" id="placeLinks"></div>
+    </div>
+
+    <div id="unknownWarn" class="unknown-place" style="display: none;"></div>
+
+    <h2 style="text-align: center; margin-bottom: 8px;">Enquiry</h2>
+    <p style="text-align: center; color: #64748b; font-size: 14px; margin-bottom: 18px;">
+      After submit you will be taken to your receipt with these details.
+    </p>
+
+    <form id="placeEnquiryForm" onsubmit="return GarhKumoPlaceDetail.submit(event, this)">
+      <input type="hidden" name="destination" id="destHidden" value="" />
+      <input type="hidden" name="detailPage" id="detailPageHidden" value="" />
+
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Email (optional)" />
+      <input type="text" name="phone" placeholder="Phone number" required />
+      <input type="text" name="persons" placeholder="Number of persons" required />
+      <input type="date" name="date" required />
+      <textarea name="message" rows="3" placeholder="Special requests or questions (optional)"></textarea>
+      <button type="submit">Submit enquiry</button>
+    </form>
+  </div>
+
+  <script src="places-catalog.js"></script>
+  <script src="receipt-payload.js"></script>
+  <script src="enquiry-receipt.js"></script>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var slug = (params.get("place") || "").toLowerCase().trim();
+      var cat = window.GARHKUMO_PLACES && window.GARHKUMO_PLACES[slug];
+      var titleEl = document.getElementById("placeTitle");
+      var tagEl = document.getElementById("placeTagline");
+      var linksEl = document.getElementById("placeLinks");
+      var dest = document.getElementById("destHidden");
+      var detailPage = document.getElementById("detailPageHidden");
+      var warn = document.getElementById("unknownWarn");
+
+      detailPage.value = "place-detail.html?place=" + encodeURIComponent(slug || "unknown");
+
+      if (cat) {
+        titleEl.textContent = cat.name;
+        tagEl.textContent = cat.tagline;
+        dest.value = cat.name;
+        if (cat.guideUrl) {
+          linksEl.innerHTML =
+            '<a href="' +
+            cat.guideUrl +
+            '">View full travel guide</a><a href="booking.html">Package request form</a>';
+        }
+      } else if (slug) {
+        var pretty = slug.replace(/-/g, " ").replace(/\b\w/g, function (c) {
+          return c.toUpperCase();
+        });
+        titleEl.textContent = pretty;
+        dest.value = pretty;
+        warn.style.display = "block";
+        warn.textContent =
+          "This place is not in our short catalog yet — you can still send an enquiry. Try links like place-detail.html?place=haridwar for a richer page.";
+      } else {
+        titleEl.textContent = "Choose a place";
+        tagEl.textContent =
+          "Open this page with ?place=haridwar, ?place=nainital, ?place=kedarnath, etc.";
+        dest.value = "";
+        warn.style.display = "block";
+        warn.innerHTML =
+          'Example: <a href="place-detail.html?place=haridwar">Haridwar</a> · <a href="place-detail.html?place=chopta">Chopta</a>';
+      }
+    })();
+  </script>
+</body>
+</html>

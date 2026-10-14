@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment — GarhKumo</title>
+
+<style>
+
+body{
+  font-family:Arial, sans-serif;
+  background:#f4f7fb;
+  padding:30px 15px;
+}
+
+.payment-wrap{
+  max-width:520px;
+  margin:auto;
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+
+.payment-header{
+  background:linear-gradient(135deg,#0f766e,#0ea5a4);
+  color:#fff;
+  padding:24px 28px;
+}
+
+.payment-header h1{
+  margin:0;
+  font-size:26px;
+}
+
+.payment-header p{
+  margin:6px 0 0;
+  opacity:.85;
+  font-size:14px;
+}
+
+.payment-body{
+  padding:28px;
+}
+
+.booking-summary{
+  background:#f0fdf4;
+  border:1px solid #86efac;
+  border-radius:10px;
+  padding:14px 18px;
+  margin-bottom:22px;
+  font-size:14px;
+  color:#14532d;
+  line-height:1.9;
+}
+
+.booking-summary strong{
+  display:block;
+  font-size:15px;
+  color:#065f46;
+  margin-bottom:6px;
+}
+
+.amount-box{
+  background:#0f766e;
+  color:white;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.amount-box h2{
+  margin:0;
+  font-size:18px;
+}
+
+.amount-box p{
+  font-size:32px;
+  margin-top:8px;
+  font-weight:bold;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  color:#475569;
+  margin-bottom:4px;
+  margin-top:14px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="month"]{
+
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  font-size:15px;
+  box-sizing:border-box;
+}
+
+input:focus{
+  outline:none;
+  border-color:#0ea5a4;
+  box-shadow:0 0 0 2px rgba(14,165,164,.2);
+}
+
+.pay-btn{
+  width:100%;
+  margin-top:22px;
+  padding:13px;
+  background:#0f766e;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.pay-btn:hover{
+  filter:brightness(1.07);
+}
+
+.back-link{
+  display:block;
+  text-align:center;
+  margin-top:14px;
+  font-size:13px;
+}
+
+.back-link a{
+  color:#0f766e;
+  text-decoration:none;
+}
+
+.demo-note{
+  font-size:12px;
+  color:#94a3b8;
+  text-align:center;
+  margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="payment-wrap">
+
+  <div class="payment-header">
+    <h1>GarhKumo</h1>
+    <p>Secure payment </p>
+  </div>
+
+  <div class="payment-body">
+
+    <!-- BOOKING SUMMARY -->
+
+    <div class="booking-summary">
+
+      <strong>Booking Summary</strong>
+
+      <span id="sumLines">
+        Loading...
+      </span>
+
+    </div>
+
+    <!-- PAYMENT AMOUNT -->
+
+    <div class="amount-box">
+
+      <h2>Total Payment Amount</h2>
+
+      <p id="paymentAmount">
+        ₹0
+      </p>
+
+    </div>
+
+    <!-- CARD NUMBER -->
+
+    <label>Card Number</label>
+
+    <input
+      type="text"
+      id="cardNumber"
+      placeholder="1234 5678 9012 3456"
+      maxlength="19"
+    >
+
+    <!-- CARD HOLDER -->
+
+    <label>Card Holder Name</label>
+
+    <input
+      type="text"
+      id="cardHolder"
+      placeholder="Name on card"
+    >
+
+    <!-- EXPIRY -->
+
+    <label>Expiry Date</label>
+
+    <input
+      type="month"
+      id="expiry"
+    >
+
+    <!-- CVV -->
+
+    <label>CVV</label>
+
+    <input
+      type="password"
+      id="cvv"
+      placeholder="CVV"
+      maxlength="4"
+    >
+
+    <!-- BUTTON -->
+
+    <button
+      class="pay-btn"
+      onclick="confirmPayment()"
+    >
+      Pay Now
+    </button>
+
+    <p class="demo-note">
+      payment gateway  
+    </p>
+
+    <p class="back-link">
+      <a href="booking.html">
+        ← Back to booking form
+      </a>
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+
+  // LOAD BOOKING DATA
+
+  var bookingData =
+    JSON.parse(
+      localStorage.getItem("garhKumoBooking")
+    ) || {};
+
+  // FORMAT DATE
+
+  function formatDate(date){
+
+    if(!date) return "—";
+
+    var d = new Date(date);
+
+    if(isNaN(d.getTime())) return date;
+
+    return d.toLocaleDateString(
+      undefined,
+      {
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      }
+    );
+  }
+
+  // SHOW SUMMARY
+
+  document.getElementById("sumLines").innerHTML =
+
+    "<b>Destination:</b> " +
+    (bookingData.destination || "—") +
+    "<br>" +
+
+    "<b>Package:</b> " +
+    (bookingData.packageName || "—") +
+    "<br>" +
+
+    "<b>Name:</b> " +
+    (bookingData.customerName || "—") +
+    "<br>" +
+
+    "<b>Guests:</b> " +
+    (bookingData.guests || "—") +
+    "<br>" +
+
+    "<b>Travel Date:</b> " +
+    formatDate(bookingData.travelDate);
+
+  // SHOW PAYMENT AMOUNT
+
+  document.getElementById("paymentAmount").innerHTML =
+    "₹" + (bookingData.packagePrice || "0");
+
+  // CARD FORMAT
+
+  document
+    .getElementById("cardNumber")
+    .addEventListener("input", function(){
+
+      var value =
+        this.value
+        .replace(/\D/g,"")
+        .slice(0,16);
+
+      this.value =
+        value.replace(/(.{4})/g,"$1 ").trim();
+
+  });
+
+  // PAYMENT FUNCTION
+
+  function confirmPayment(){
+
+    var cardNum =
+      document.getElementById("cardNumber")
+      .value.replace(/\s/g,"");
+
+    var holder =
+      document.getElementById("cardHolder")
+      .value.trim();
+
+    var expiry =
+      document.getElementById("expiry")
+      .value;
+
+    var cvv =
+      document.getElementById("cvv")
+      .value.trim();
+
+    // VALIDATION
+
+    if(cardNum.length !== 16){
+      alert("Please enter valid card number");
+      return;
+    }
+
+    if(!holder){
+      alert("Please enter card holder name");
+      return;
+    }
+
+    if(!expiry){
+      alert("Please select expiry date");
+      return;
+    }
+
+    if(cvv.length < 3){
+      alert("Please enter valid CVV");
+      return;
+    }
+
+    // RECEIPT ID
+
+    var year =
+      new Date().getFullYear();
+
+    var receiptId =
+      "GK" + year + "-" +
+      Math.random()
+      .toString(36)
+      .substring(2,8)
+      .toUpperCase();
+
+    // SAVE RECEIPT DATA
+
+    var receiptData = {
+
+      receiptId: receiptId,
+
+      paymentStatus: "Paid",
+
+      paymentDate:
+        new Date().toLocaleString(),
+
+      cardLast4:
+        cardNum.slice(-4),
+
+      customerName:
+        bookingData.customerName || "",
+
+      customerEmail:
+        bookingData.customerEmail || "",
+
+      customerPhone:
+        bookingData.customerPhone || "",
+
+      destination:
+        bookingData.destination || "",
+
+      packageName:
+        bookingData.packageName || "",
+
+      packageDays:
+        bookingData.packageDays || "",
+
+      packagePrice:
+        bookingData.packagePrice || "",
+
+      travelDate:
+        bookingData.travelDate || "",
+
+      guests:
+        bookingData.guests || ""
+    };
+
+    localStorage.setItem(
+      "garhKumoReceipt",
+      JSON.stringify(receiptData)
+    );
+
+    // SUCCESS ALERT
+
+    alert("Payment Successful!");
+
+    // REDIRECT
+
+    window.location.href =
+      "booking_reicpt.html";
+
+      // SAVE RECEIPT DATA
+localStorage.setItem("garhKumoReceipt", JSON.stringify(receiptData));
+
+// ALSO SAVE TO ENQUIRIES LIST FOR ADMIN
+let enquiries = JSON.parse(localStorage.getItem("enquiries")) || [];
+enquiries.push(receiptData);
+localStorage.setItem("enquiries", JSON.stringify(enquiries));
+
+  }
+
+</script>
+
+</body>
+</html>
