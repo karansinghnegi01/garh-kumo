@@ -1040,4 +1040,71 @@ html{
   width:300px;
 }
 
+.gk-weather {
+  padding: 40px 20px;
+  background: #f2f7f5;
+  text-align: center;
+}
+
+.gk-weather-card {
+  max-width: 600px;
+  margin: auto;
+  padding: 28px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+}
+
+.gk-weather-card h2 {
+  color: #176b50;
+  margin-bottom: 10px;
+}
+
+.gk-weather-card p {
+  color: #555;
+}
+
+.gk-weather-card label {
+  display: block;
+  margin: 18px 0 8px;
+}
+
+.gk-weather-card select,
+.gk-weather-card button {
+  padding: 12px;
+  margin: 6px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.gk-weather-card select {
+  max-width: 100%;
+  border: 1px solid #ccc;
+}
+
+.gk-weather-card button {
+  border: none;
+  background: #176b50;
+  color: white;
+  cursor: pointer;
+}
+
+#gkWeatherResult {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f2f7f5;
+  border-radius: 10px;
+  line-height: 1.7;
+}
+
+#gkWeatherResult h3 {
+  font-size: 30px;
+  color: #176b50;
+}
+
+@media (max-width: 600px) {
+  .gk-weather-card {
+    padding: 18px;
+  }
+}
          
