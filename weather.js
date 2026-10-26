@@ -1,4 +1,4 @@
-
+```javascript
 (function () {
   const destination = document.getElementById("gkDestination");
   const button = document.getElementById("gkWeatherBtn");
@@ -6,8 +6,7 @@
   const panel = document.getElementById("gkWeatherPanel");
   const toggle = document.getElementById("gkWeatherToggle");
   const close = document.getElementById("gkWeatherClose");
-
-  if (!destination || !button || !result) return;
+  const kedarnathResult = document.getElementById("kedarnathWeatherResult");
 
   const weatherText = {
     0: "Clear sky",
@@ -15,7 +14,7 @@
     2: "Partly cloudy",
     3: "Overcast",
     45: "Fog",
-    48: "Depositing rime fog",
+    48: "Rime fog",
     51: "Light drizzle",
     53: "Moderate drizzle",
     55: "Dense drizzle",
@@ -27,11 +26,19 @@
     75: "Heavy snow",
     80: "Rain showers",
     81: "Moderate rain showers",
-    82: "Violent rain showers",
+    82: "Heavy rain showers",
     95: "Thunderstorm",
     96: "Thunderstorm with hail",
     99: "Thunderstorm with heavy hail"
   };
+
+  function safeNumber(value, suffix = "") {
+    return Number.isFinite(value) ? `${value}${suffix}` : "Unavailable";
+  }
+
+  function formatTime(value) {
+    return value ? value.slice(11, 16) : "Unavailable";
+  }
 
   function showPanel() {
     if (panel) panel.hidden = false;
@@ -46,31 +53,25 @@
   if (toggle) toggle.addEventListener("click", showPanel);
   if (close) close.addEventListener("click", hidePanel);
 
-  function safeNumber(value, suffix = "") {
-    return Number.isFinite(value) ? `${value}${suffix}` : "Unavailable";
-  }
+  async function loadWeather(select, output, weatherButton) {
+    if (!select || !output) return;
 
-  function formatTime(value) {
-    if (!value) return "Unavailable";
-    return value.slice(11, 16);
-  }
-
-  async function loadWeather() {
-    const [latitude, longitude] = destination.value.split(",").map(Number);
+    const parts = select.value.split(",").map(Number);
+    const latitude = parts[0];
+    const longitude = parts[1];
 
     if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-      result.textContent = "Please select a valid destination.";
+      output.textContent = "Please select a valid destination.";
       return;
     }
 
-    button.disabled = true;
-    result.innerHTML = "<p>Loading weather data...</p>";
+    if (weatherButton) weatherButton.disabled = true;
+    output.innerHTML = "<p>Loading weather data...</p>";
 
     try {
       const params = new URLSearchParams({
-        latitude,
-        longitude,
-        elevation: "3549",
+        latitude: String(latitude),
+        longitude: String(longitude),
         current: [
           "temperature_2m",
           "relative_humidity_2m",
@@ -87,7 +88,6 @@
           "temperature_2m",
           "precipitation_probability",
           "weather_code",
-          "relative_humidity_2m",
           "uv_index",
           "visibility"
         ].join(","),
@@ -102,8 +102,7 @@
           "wind_speed_10m_max"
         ].join(","),
         timezone: "auto",
-        forecast_days: "7",
-        forecast_hours: "24"
+        forecast_days: "7"
       });
 
       const response = await fetch(
@@ -124,35 +123,55 @@
       const hourly = data.hourly;
       const daily = data.daily;
 
-      const currentCondition =
+      const condition =
         weatherText[current.weather_code] || "Condition unavailable";
 
-      const hourlyCards = hourly.time.slice(0, 12).map((time, i) => `
-        <div class="gk-hour-card">
-          <strong>${formatTime(time)}</strong>
-          <span>${weatherText[hourly.weather_code[i]] || "—"}</span>
-          <b>${safeNumber(hourly.temperature_2m[i], "°C")}</b>
-          <small>Rain: ${safeNumber(hourly.precipitation_probability[i], "%")}</small>
-        </div>
-      `).join("");
+      // Show the next 12 hours from the current time.
+      let startIndex = hourly.time.findIndex(
+        time => time >= current.time
+      );
+
+      if (startIndex < 0) startIndex = 0;
+
+      const hourlyCards = hourly.time
+        .slice(startIndex, startIndex + 12)
+        .map((time, offset) => {
+          const i = startIndex + offset;
+
+          return `
+            <div class="gk-hour-card">
+              <strong>${formatTime(time)}</strong>
+              <span>${weatherText[hourly.weather_code[i]] || "—"}</span>
+              <b>${safeNumber(hourly.temperature_2m[i], "°C")}</b>
+              <small>Rain: ${safeNumber(hourly.precipitation_probability[i], "%")}</small>
+            </div>
+          `;
+        }).join("");
 
       const dailyCards = daily.time.map((date, i) => `
         <div class="gk-day-card">
-          <strong>${date.slice(5)}</strong>
+          <strong>${date}</strong>
           <span>${weatherText[daily.weather_code[i]] || "—"}</span>
-          <b>${safeNumber(daily.temperature_2m_max[i], "°")} /
+          <b>${safeNumber(daily.temperature_2m_max[i], "°C")} /
               ${safeNumber(daily.temperature_2m_min[i], "°C")}</b>
           <small>Rain: ${safeNumber(daily.precipitation_probability_max[i], "%")}</small>
         </div>
       `).join("");
 
-      result.innerHTML = `
+      output.innerHTML = `
         <div class="gk-current-weather">
-          <p class="gk-weather-location">${destination.options[destination.selectedIndex].text}</p>
-          <div class="gk-weather-temp">${safeNumber(current.temperature_2m, "°C")}</div>
-          <h3>${currentCondition}</h3>
+          <p class="gk-weather-location">
+            ${select.options[select.selectedIndex].text}
+          </p>
+          <div class="gk-weather-temp">
+            ${safeNumber(current.temperature_2m, "°C")}
+          </div>
+          <h3>${condition}</h3>
           <p>Feels like ${safeNumber(current.apparent_temperature, "°C")}</p>
-          <p>${current.is_day === 1 ? "Daytime" : "Nighttime"} · Updated ${formatTime(current.time)}</p>
+          <p>
+            ${current.is_day === 1 ? "Daytime" : "Nighttime"}
+            · Updated ${formatTime(current.time)}
+          </p>
         </div>
 
         <div class="gk-weather-details">
@@ -176,22 +195,45 @@
           <div><span>Sunset</span><strong>${formatTime(daily.sunset[0])}</strong></div>
           <div><span>Maximum UV index</span><strong>${safeNumber(daily.uv_index_max[0])}</strong></div>
           <div><span>Maximum wind</span><strong>${safeNumber(daily.wind_speed_10m_max[0], " km/h")}</strong></div>
-          <div><span>Hourly UV index</span><strong>${safeNumber(hourly.uv_index[0])}</strong></div>
-          <div><span>Visibility</span><strong>${safeNumber(hourly.visibility[0], " m")}</strong></div>
+          <div><span>Hourly UV index</span><strong>${safeNumber(hourly.uv_index[startIndex])}</strong></div>
+          <div><span>Visibility</span><strong>${safeNumber(hourly.visibility[startIndex], " m")}</strong></div>
         </div>
 
         <p class="gk-weather-note">
-          Forecasts are estimates and may differ from conditions at the exact location,
-          especially in mountainous areas.
+          Mountain weather can change quickly. Forecasts are estimates and
+          may differ from conditions at the exact location.
         </p>
         <p class="gk-weather-note">Weather data: Open-Meteo</p>
       `;
     } catch (error) {
-      result.textContent =
+      output.textContent =
         "Weather could not be loaded. Check your internet connection and try again.";
     } finally {
-      button.disabled = false;
+      if (weatherButton) weatherButton.disabled = false;
     }
+  }
+
+  // Homepage weather selector
+  if (destination && button && result) {
+    button.addEventListener("click", function () {
+      loadWeather(destination, result, button);
+    });
+
+    destination.addEventListener("change", function () {
+      loadWeather(destination, result, button);
+    });
+  }
+
+  // Kedarnath destination page
+  if (kedarnathResult) {
+    const kedarnathSelect = document.createElement("select");
+    kedarnathSelect.innerHTML =
+      '<option value="30.7346,79.0669">Kedarnath</option>';
+
+    loadWeather(kedarnathSelect, kedarnathResult, null);
+  }
+})();
+
   }
 
   button.addEventListener("click", loadWeather);
