@@ -1,4 +1,4 @@
-```javascript
+javascript
 (function () {
   const destination = document.getElementById("gkDestination");
   const button = document.getElementById("gkWeatherBtn");
