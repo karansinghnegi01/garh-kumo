@@ -1,0 +1,593 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment — GarhKumo</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  padding: 30px 15px;
+  margin: 0;
+}
+
+.payment-wrap {
+  max-width: 520px;
+  margin: auto;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+
+.payment-header {
+  background: linear-gradient(135deg,#0f766e,#0ea5a4);
+  color: white;
+  padding: 24px 28px;
+}
+
+.payment-header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.payment-header p {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+
+.payment-body {
+  padding: 28px;
+}
+
+.booking-summary {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  font-size: 14px;
+  color: #14532d;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.booking-summary strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.amount-box {
+  background: #0f766e;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.amount-box h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.amount-box p {
+  font-size: 32px;
+  margin: 8px 0 0;
+  font-weight: bold;
+}
+
+.section-title {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 9px;
+  margin-bottom: 20px;
+}
+
+.payment-option {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 13px 5px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+  background: #fff;
+  transition: .2s;
+}
+
+.payment-option input {
+  accent-color: #0f766e;
+  margin: 0 0 8px;
+}
+
+.payment-option span {
+  display: block;
+  font-weight: bold;
+}
+
+.payment-option:has(input:checked) {
+  border: 2px solid #0f766e;
+  background: #f0fdfa;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  color: #475569;
+  margin: 14px 0 5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="month"],
+input[type="tel"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0ea5a4;
+  box-shadow: 0 0 0 2px rgba(14,165,164,.15);
+}
+
+.payment-fields {
+  display: none;
+}
+
+.payment-fields.active {
+  display: block;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pay-btn {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px;
+  background: #0f766e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pay-btn:hover {
+  background: #115e59;
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+}
+
+.back-link a {
+  color: #0f766e;
+  text-decoration: none;
+}
+
+.demo-note {
+  font-size: 12px;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+@media (max-width: 400px) {
+  .payment-body {
+    padding: 20px;
+  }
+
+  .payment-options {
+    gap: 5px;
+  }
+
+  .payment-option {
+    font-size: 12px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="payment-wrap">
+  <div class="payment-header">
+    <h1>GarhKumo</h1>
+    <p>Choose your preferred payment method</p>
+  </div>
+
+  <div class="payment-body">
+    <div class="booking-summary">
+      <strong>Booking Summary</strong>
+      <div id="sumLines">Loading booking details...</div>
+    </div>
+
+    <div class="amount-box">
+      <h2>Total Payment Amount</h2>
+      <p id="paymentAmount">₹0</p>
+    </div>
+
+    <form id="paymentForm">
+      <h3 class="section-title">Select Payment Method</h3>
+
+      <div class="payment-options">
+        <label class="payment-option">
+          <input type="radio" name="paymentMethod" value="UPI" checked>
+          <span>UPI</span>
+          <small>GPay, PhonePe</small>
+        </label>
+
+        <label class="payment-option">
+          <input type="radio" name="paymentMethod" value="Credit Card">
+          <span>Credit Card</span>
+          <small>Credit</small>
+        </label>
+
+        <label class="payment-option">
+          <input type="radio" name="paymentMethod" value="Debit Card">
+          <span>Debit Card</span>
+          <small>Debit</small>
+        </label>
+      </div>
+
+      <div id="upiFields" class="payment-fields active">
+        <label for="upiId">UPI ID</label>
+        <input
+          type="text"
+          id="upiId"
+          placeholder="yourname@bank"
+          autocomplete="off"
+        >
+        <p class="demo-note">Enter your UPI ID to continue.</p>
+      </div>
+
+      <div id="cardFields" class="payment-fields">
+        <label for="cardHolder">Card Holder Name</label>
+        <input
+          type="text"
+          id="cardHolder"
+          placeholder="Name on card"
+          autocomplete="cc-name"
+        >
+
+        <label for="cardNumber">Card Number</label>
+        <input
+          type="tel"
+          id="cardNumber"
+          placeholder="1234 5678 9012 3456"
+          maxlength="19"
+          inputmode="numeric"
+          autocomplete="cc-number"
+        >
+
+        <div class="field-row">
+          <div>
+            <label for="expiry">Expiry Date</label>
+            <input
+              type="month"
+              id="expiry"
+              autocomplete="cc-exp"
+            >
+          </div>
+          <div>
+            <label for="cvv">CVV</label>
+            <input
+              type="password"
+              id="cvv"
+              placeholder="CVV"
+              maxlength="4"
+              inputmode="numeric"
+              autocomplete="cc-csc"
+            >
+          </div>
+        </div>
+      </div>
+
+      <button class="pay-btn" type="submit" id="payButton">
+        Continue to UPI Payment
+      </button>
+    </form>
+
+    <p class="demo-note">
+      Demo payment interface. No actual money will be charged.
+    </p>
+
+    <p class="back-link">
+      <a href="booking.html">← Back to booking form</a>
+    </p>
+  </div>
+</div>
+
+<script>
+const bookingData = JSON.parse(
+  localStorage.getItem("garhKumoBooking") || "{}"
+);
+
+const sumLines = document.getElementById("sumLines");
+const paymentAmount = document.getElementById("paymentAmount");
+const paymentForm = document.getElementById("paymentForm");
+const payButton = document.getElementById("payButton");
+const upiFields = document.getElementById("upiFields");
+const cardFields = document.getElementById("cardFields");
+const cardNumber = document.getElementById("cardNumber");
+const cardHolder = document.getElementById("cardHolder");
+const expiry = document.getElementById("expiry");
+const cvv = document.getElementById("cvv");
+const upiId = document.getElementById("upiId");
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, function(char) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char];
+  });
+}
+
+function formatDate(value) {
+  if (!value) return "—";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return escapeHTML(value);
+  }
+
+  return escapeHTML(date.toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  }));
+}
+
+sumLines.innerHTML =
+  "<b>Destination:</b> " +
+  escapeHTML(bookingData.destination || "—") +
+  "<br><b>Package:</b> " +
+  escapeHTML(bookingData.packageName || "—") +
+  "<br><b>Name:</b> " +
+  escapeHTML(bookingData.customerName || "—") +
+  "<br><b>Guests:</b> " +
+  escapeHTML(bookingData.guests || "—") +
+  "<br><b>Travel Date:</b> " +
+  formatDate(bookingData.travelDate);
+
+const amount = Number(bookingData.packagePrice);
+
+paymentAmount.textContent =
+  "₹" + (
+    Number.isFinite(amount) && amount >= 0
+      ? amount.toLocaleString("en-IN")
+      : "0"
+  );
+
+function selectedMethod() {
+  return document.querySelector(
+    'input[name="paymentMethod"]:checked'
+  ).value;
+}
+
+function updatePaymentMethod() {
+  const method = selectedMethod();
+  const isUPI = method === "UPI";
+
+  upiFields.classList.toggle("active", isUPI);
+  cardFields.classList.toggle("active", !isUPI);
+
+  upiId.required = isUPI;
+  cardHolder.required = !isUPI;
+  cardNumber.required = !isUPI;
+  expiry.required = !isUPI;
+  cvv.required = !isUPI;
+
+  payButton.textContent =
+    method === "UPI"
+      ? "Continue to UPI Payment"
+      : "Pay with " + method;
+}
+
+document.querySelectorAll(
+  'input[name="paymentMethod"]'
+).forEach(function(input) {
+  input.addEventListener("change", updatePaymentMethod);
+});
+
+cardNumber.addEventListener("input", function() {
+  const digits = this.value.replace(/\D/g, "").slice(0, 19);
+  this.value = digits.replace(/(.{4})/g, "$1 ").trim();
+});
+
+cvv.addEventListener("input", function() {
+  this.value = this.value.replace(/\D/g, "").slice(0, 4);
+});
+
+upiId.addEventListener("input", function() {
+  this.value = this.value.trim();
+});
+
+function getPackageMessage(packageName, destination) {
+  const place = (destination || "").toLowerCase();
+  const pack = (packageName || "").toLowerCase();
+
+  if (place.includes("kedarnath")) {
+    return "Get ready for a spiritual journey to Kedarnath Dham!";
+  }
+
+  if (place.includes("badrinath")) {
+    return "Your journey to the sacred Badrinath Temple awaits!";
+  }
+
+  if (place.includes("nainital")) {
+    return "Get ready to explore the beautiful lakes and scenic views of Nainital!";
+  }
+
+  if (place.includes("chopta")) {
+    return "Your Himalayan adventure to Chopta and Chandrashila awaits!";
+  }
+
+  if (place.includes("roopkund")) {
+    return "Prepare for an unforgettable Himalayan trekking experience!";
+  }
+
+  if (pack.includes("family")) {
+    return "Thank you for choosing our Family Package!";
+  }
+
+  if (pack.includes("adventure")) {
+    return "Get ready for an exciting adventure with GarhKumo!";
+  }
+
+  if (pack.includes("luxury") || pack.includes("vip")) {
+    return "Thank you for choosing our premium travel experience!";
+  }
+
+  return "Thank you for choosing GarhKumo. We look forward to your trip!";
+}
+
+paymentForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (!bookingData.destination ||
+      !bookingData.packageName ||
+      !bookingData.customerName ||
+      !bookingData.travelDate ||
+      !Number.isFinite(amount) ||
+      amount <= 0) {
+    alert("Booking details are incomplete. Please start your booking again.");
+    return;
+  }
+
+  const method = selectedMethod();
+
+  if (method === "UPI") {
+    const upiPattern = /^[a-zA-Z0-9._-]{2,256}@[a-zA-Z0-9.-]{2,64}$/;
+
+    if (!upiPattern.test(upiId.value.trim())) {
+      alert("Please enter a valid UPI ID.");
+      upiId.focus();
+      return;
+    }
+  } else {
+    const digits = cardNumber.value.replace(/\D/g, "");
+
+    if (cardHolder.value.trim().length < 2) {
+      alert("Please enter the cardholder name.");
+      cardHolder.focus();
+      return;
+    }
+
+    if (digits.length < 13 || digits.length > 19) {
+      alert("Please enter a valid card number.");
+      cardNumber.focus();
+      return;
+    }
+
+    if (!expiry.value) {
+      alert("Please select the card expiry date.");
+      expiry.focus();
+      return;
+    }
+
+    const selectedExpiry = new Date(expiry.value + "-01T00:00:00");
+    const currentMonth = new Date();
+    currentMonth.setDate(1);
+    currentMonth.setHours(0, 0, 0, 0);
+
+    if (selectedExpiry < currentMonth) {
+      alert("This card has expired.");
+      expiry.focus();
+      return;
+    }
+
+    if (!/^\d{3,4}$/.test(cvv.value)) {
+      alert("Please enter a valid CVV.");
+      cvv.focus();
+      return;
+    }
+  }
+
+  const receiptId = "GK" +
+    new Date().getFullYear() + "-" +
+    Math.random().toString(36).substring(2, 8).toUpperCase();
+
+  const receiptData = {
+    receiptId: receiptId,
+    paymentStatus: "Demo Only - Not Verified",
+    paymentMethod: method,
+    paymentDate: new Date().toLocaleString("en-IN"),
+    customerName: bookingData.customerName || "",
+    customerEmail: bookingData.customerEmail || "",
+    customerPhone: bookingData.customerPhone || "",
+    destination: bookingData.destination || "",
+    packageName: bookingData.packageName || "",
+    packageDays: bookingData.packageDays || "",
+    packagePrice: amount,
+    travelDate: bookingData.travelDate || "",
+    guests: bookingData.guests || ""
+  };
+
+  try {
+    localStorage.setItem(
+      "garhKumoReceipt",
+      JSON.stringify(receiptData)
+    );
+
+    const enquiries = JSON.parse(
+      localStorage.getItem("enquiries") || "[]"
+    );
+
+    enquiries.push(receiptData);
+
+    localStorage.setItem("enquiries", JSON.stringify(enquiries));
+  } catch (error) {
+    alert("Unable to save booking details in this browser.");
+    return;
+  }
+
+  if (method === "UPI") {
+    alert(
+      "UPI details validated. This demo does not initiate a UPI payment or verify a transaction."
+    );
+  } else {
+    alert(
+      "Card details validated. This demo does not charge your card or verify a transaction."
+    );
+  }
+
+  window.location.href = "booking_reicpt.html";
+});
+
+updatePaymentMethod();
+</script>
+
+</body>
+</html>
+```
