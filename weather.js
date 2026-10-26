@@ -70,6 +70,7 @@
       const params = new URLSearchParams({
         latitude,
         longitude,
+        elevation: "3549",
         current: [
           "temperature_2m",
           "relative_humidity_2m",
