@@ -234,8 +234,6 @@
   }
 })();
 
-  }
+  
 
-  button.addEventListener("click", loadWeather);
-  destination.addEventListener("change", loadWeather);
-})();
+
