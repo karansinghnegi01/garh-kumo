@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adventure Camping Package</title>
+
+  <style>
+
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#0b1d2a;
+      color:white;
+    }
+
+    header{
+      background:black;
+      padding:20px;
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    .container{
+      padding:20px;
+      max-width:1000px;
+      margin:auto;
+    }
+
+    .card{
+      background:#132f44;
+      padding:20px;
+      margin-bottom:20px;
+      border-radius:12px;
+    }
+
+    h2{
+      color:#00c3ff;
+      margin-bottom:15px;
+    }
+
+    ul{
+      line-height:1.9;
+    }
+
+    .price{
+      font-size:28px;
+      color:#00ffcc;
+      font-weight:bold;
+    }
+
+    input,
+    textarea,
+    button,
+    select{
+      width:100%;
+      padding:12px;
+      margin:8px 0;
+      border:none;
+      border-radius:6px;
+      font-size:15px;
+    }
+
+    button{
+      background:#00c3ff;
+      color:black;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#00a8dd;
+    }
+
+    label{
+      display:block;
+      margin-top:10px;
+      margin-bottom:5px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+Adventure Camping Package
+</header>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+
+  <div class="card">
+
+    <h2>📍 Package Overview</h2>
+
+    <p><b>Duration:</b> 4 Days / 3 Nights</p>
+
+    <p><b>Route:</b> Haridwar → Dehradun → Chopta → Tungnath → Chandrashila</p>
+
+    <p><b>Type:</b> Adventure Camping Package</p>
+
+    <p class="price">₹11,999 / Person</p>
+
+  </div>
+
+  <!-- DAY 1 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 1: Travel and Camping Setup</h2>
+
+    <ul>
+
+      <li><b>06:00 AM:</b> Depart Haridwar / Rishikesh</li>
+
+      <li><b>02:00 PM:</b> Arrive Chopta and set up campsite</li>
+
+      <li><b>Evening:</b> Campsite briefing and bonfire</li>
+
+    </ul>
+
+  </div>
+
+  <!-- DAY 2 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 2: Local Adventure Activities</h2>
+
+    <ul>
+
+      <li><b>08:00 AM:</b> Visit local trails and birdwatching</li>
+
+      <li><b>12:00 PM:</b> Lunch at camp</li>
+
+      <li><b>03:00 PM:</b> Adventure games and nature walk</li>
+
+    </ul>
+
+  </div>
+
+  <!-- DAY 3 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 3: Tungnath and Chandrashila Trek</h2>
+
+    <ul>
+
+      <li><b>05:00 AM:</b> Early trek to Tungnath</li>
+
+      <li><b>09:00 AM:</b> Reach Chandrashila Summit</li>
+
+      <li><b>01:00 PM:</b> Return to Chopta camp</li>
+
+      <li><b>Evening:</b> Campfire dinner and rest</li>
+
+    </ul>
+
+  </div>
+
+  <!-- DAY 4 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 4: Return Journey</h2>
+
+    <ul>
+
+      <li><b>08:00 AM:</b> Depart Chopta after breakfast</li>
+
+      <li><b>01:00 PM:</b> Lunch stop on the way</li>
+
+      <li><b>06:00 PM:</b> Reach Haridwar / Rishikesh</li>
+
+    </ul>
+
+  </div>
+
+  <!-- INCLUSIONS -->
+
+  <div class="card">
+
+    <h2>✅ Inclusions</h2>
+
+    <ul>
+
+      <li>3 Nights camping accommodation</li>
+
+      <li>Guided adventure activities</li>
+
+      <li>Meals and trek support</li>
+
+      <li>Transport and camping gear</li>
+
+    </ul>
+
+  </div>
+
+  <!-- BOOKING FORM -->
+
+  <div class="card">
+
+    <h2>📩 Booking Form</h2>
+
+    <form id="bookingForm">
+
+      <input
+      type="text"
+      id="name"
+      placeholder="Full Name"
+      required
+      >
+
+      <input
+      type="email"
+      id="email"
+      placeholder="Email Address"
+      required
+      >
+
+      <input
+      type="tel"
+      id="mobile"
+      placeholder="Mobile Number"
+      required
+      >
+
+      <input
+      type="number"
+      id="people"
+      placeholder="Number of People"
+      min="1"
+      required
+      >
+
+      <label>Preferred Travel Date</label>
+
+      <input
+      type="date"
+      id="traveldate"
+      required
+      >
+
+      <input
+      type="text"
+      id="pickupCity"
+      placeholder="Pickup City"
+      required
+      >
+
+      <input
+      type="text"
+      id="age"
+      placeholder="Age Details"
+      required
+      >
+
+      <label>Medical Certificate</label>
+
+      <input
+      type="file"
+      required
+      >
+
+      <label>Upload Aadhaar / ID Proof</label>
+
+      <input
+      type="file"
+      required
+      >
+
+      <button type="submit">
+      Continue To Payment
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+
+document
+.getElementById("bookingForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    // GET FORM VALUES
+
+    var bookingData = {
+
+        customerName:
+            document.getElementById("name").value,
+
+        customerEmail:
+            document.getElementById("email").value,
+
+        customerPhone:
+            document.getElementById("mobile").value,
+
+        guests:
+            document.getElementById("people").value,
+
+        travelDate:
+            document.getElementById("traveldate").value,
+
+        pickupCity:
+            document.getElementById("pickupCity").value,
+
+        age:
+            document.getElementById("age").value,
+
+        destination:
+            "Chopta",
+
+        packageName:
+            "Adventure Camping Package",
+
+        packageDays:
+            "4 Days / 3 Nights",
+
+        packagePrice:
+            "11999"
+    };
+
+    // SAVE DATA
+
+    localStorage.setItem(
+        "garhKumoBooking",
+        JSON.stringify(bookingData)
+    );
+
+    // REDIRECT
+
+    window.location.href = "payment.html";
+
+});
+
+</script>
+
+</body>
+</html>
