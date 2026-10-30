@@ -1,0 +1,1438 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Payment | GarhKumo</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy: #101b3c;
+  --blue: #3563f6;
+  --purple: #7856e8;
+  --muted: #77819a;
+  --border: #e9edf5;
+  --bg: #f4f6fc;
+  --green: #13a879;
+  --red: #e34d5b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--navy);
+  min-height: 100vh;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.header {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 17px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo-icon {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  font-size: 22px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 12px;
+}
+
+.secure-badge {
+  color: var(--green);
+  background: #eafaf4;
+  padding: 9px 13px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+.header a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 38px auto;
+  padding: 0 20px;
+}
+
+.page-heading {
+  margin-bottom: 25px;
+}
+
+.page-heading h1 {
+  font-size: 28px;
+  letter-spacing: -1px;
+}
+
+.page-heading p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.order-id {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.order-id strong {
+  color: var(--navy);
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 365px;
+  gap: 25px;
+  align-items: start;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 8px 35px rgba(26, 43, 89, .045);
+}
+
+.section-title {
+  font-size: 17px;
+  font-weight: 750;
+  margin-bottom: 20px;
+}
+
+.payment-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 23px;
+}
+
+.payment-option {
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 12px;
+  padding: 15px 8px;
+  min-height: 91px;
+  text-align: center;
+  color: var(--navy);
+  transition: .25s;
+}
+
+.payment-option:hover {
+  border-color: #9aafff;
+  transform: translateY(-2px);
+}
+
+.payment-option.active {
+  border: 1.5px solid var(--blue);
+  background: #f2f5ff;
+  box-shadow: 0 4px 14px rgba(53, 99, 246, .09);
+}
+
+.payment-option .symbol {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.payment-option strong {
+  display: block;
+  font-size: 11px;
+}
+
+.payment-option small {
+  color: var(--muted);
+  font-size: 10px;
+  display: block;
+  margin-top: 4px;
+}
+
+.method-content {
+  border-top: 1px solid var(--border);
+  padding-top: 23px;
+  min-height: 240px;
+}
+
+.method-content h3 {
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.method-content > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 650;
+  margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  height: 46px;
+  padding: 0 13px;
+  border: 1px solid #e2e6ef;
+  border-radius: 9px;
+  outline: none;
+  color: var(--navy);
+  background: white;
+  transition: .2s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(53, 99, 246, .08);
+}
+
+.input-group input::placeholder {
+  color: #adb5c5;
+}
+
+.two-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+
+.brand-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.brand {
+  border: 1px solid var(--border);
+  padding: 9px 12px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #46516e;
+  background: white;
+}
+
+.quick-methods {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.quick-method {
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 13px 5px;
+  text-align: center;
+  background: white;
+  transition: .2s;
+}
+
+.quick-method:hover {
+  border-color: var(--blue);
+  background: #f7f8ff;
+}
+
+.quick-method span {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 7px;
+}
+
+.quick-method strong {
+  font-size: 10px;
+}
+
+.qr-box {
+  width: 170px;
+  height: 170px;
+  margin: 15px auto;
+  border: 8px solid white;
+  outline: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #f6f7fb;
+}
+
+.qr-box img {
+  width: 100%;
+  height: 100%;
+}
+
+.qr-caption {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.qr-caption strong {
+  color: var(--navy);
+}
+
+/* Order summary */
+
+.product {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding-bottom: 21px;
+  border-bottom: 1px solid var(--border);
+}
+
+.product-image {
+  width: 75px;
+  height: 75px;
+  border-radius: 13px;
+  object-fit: cover;
+  background: #eef1ff;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-info h3 {
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.product-info p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.product-price {
+  font-size: 13px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.coupon {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.coupon input {
+  width: 100%;
+  min-width: 0;
+  height: 43px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0 11px;
+  outline: none;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.coupon button {
+  background: #edf1ff;
+  color: var(--blue);
+  border: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  font-weight: 750;
+  font-size: 12px;
+}
+
+.coupon-message {
+  font-size: 11px;
+  margin-top: -12px;
+  margin-bottom: 15px;
+}
+
+.price-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.price-row strong {
+  color: var(--navy);
+  font-weight: 650;
+}
+
+.price-row.discount strong {
+  color: var(--green);
+}
+
+.total {
+  border-top: 1px dashed #dce1ed;
+  margin-top: 18px;
+  padding-top: 19px;
+}
+
+.total span {
+  font-size: 14px;
+  color: var(--navy);
+  font-weight: 750;
+}
+
+.total strong {
+  font-size: 23px;
+  color: var(--blue);
+}
+
+.pay-button {
+  width: 100%;
+  border: none;
+  border-radius: 11px;
+  padding: 17px;
+  margin-top: 23px;
+  color: white;
+  background: linear-gradient(110deg, #3563f6, #7956e8);
+  font-weight: 750;
+  font-size: 14px;
+  box-shadow: 0 8px 20px rgba(77, 91, 226, .22);
+  transition: .25s;
+}
+
+.pay-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(77, 91, 226, .3);
+}
+
+.pay-button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.security {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 17px;
+  text-align: center;
+}
+
+.security span {
+  color: var(--green);
+}
+
+.payment-logos {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  color: #8992a7;
+  font-size: 11px;
+  font-weight: 800;
+  margin-top: 20px;
+}
+
+.footer {
+  text-align: center;
+  color: #929bb0;
+  font-size: 11px;
+  padding: 28px 15px;
+}
+
+/* Notifications */
+
+.message {
+  display: none;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 9px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.message.error {
+  display: block;
+  background: #fff0f1;
+  color: #c73d4b;
+}
+
+.message.success {
+  display: block;
+  background: #eafaf4;
+  color: #138b66;
+}
+
+/* Processing / result screens */
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 19, 47, .65);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.overlay.show {
+  display: flex;
+  animation: fadeIn .3s ease;
+}
+
+.result-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 38px 30px;
+  border-radius: 22px;
+  background: white;
+  text-align: center;
+  box-shadow: 0 20px 80px rgba(0,0,0,.2);
+  animation: slideUp .35s ease;
+}
+
+.loader {
+  width: 65px;
+  height: 65px;
+  border: 5px solid #e8ecff;
+  border-top-color: var(--blue);
+  border-right-color: var(--purple);
+  border-radius: 50%;
+  margin: 0 auto 25px;
+  animation: spin .8s linear infinite;
+}
+
+.result-icon {
+  width: 75px;
+  height: 75px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  font-size: 34px;
+}
+
+.result-icon.success {
+  color: var(--green);
+  background: #e6faf2;
+}
+
+.result-icon.failed {
+  color: var(--red);
+  background: #fff0f1;
+}
+
+.result-card h2 {
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+
+.result-card > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.receipt {
+  background: #f7f8fc;
+  border-radius: 12px;
+  padding: 17px;
+  margin: 23px 0;
+  text-align: left;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 11px;
+}
+
+.receipt-row:last-child {
+  margin-bottom: 0;
+}
+
+.receipt-row span {
+  color: var(--muted);
+}
+
+.receipt-row strong {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.result-actions button {
+  flex: 1;
+  padding: 13px 8px;
+  border: none;
+  border-radius: 9px;
+  background: var(--blue);
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.result-actions .secondary {
+  color: var(--navy);
+  background: #edf0f8;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+
+@media(max-width: 850px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card {
+    order: -1;
+  }
+
+  .container {
+    margin-top: 25px;
+  }
+}
+
+@media(max-width: 520px) {
+  .header {
+    padding: 14px 17px;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+
+  .secure-badge {
+    padding: 8px;
+    font-size: 9px;
+  }
+
+  .header a {
+    font-size: 10px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .page-heading h1 {
+    font-size: 23px;
+  }
+
+  .card {
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .payment-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-methods {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-image {
+    width: 62px;
+    height: 62px;
+  }
+
+  .total strong {
+    font-size: 20px;
+  }
+
+  .result-card {
+    padding: 30px 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    <div class="logo-icon">G</div>
+    GarhKumo
+  </div>
+
+  <div class="header-right">
+    <div class="secure-badge">🔒 Secure Checkout</div>
+    <a href="mailto:support@example.com">Help ?</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="page-heading">
+    <h1>Complete your payment</h1>
+    <p>Choose your preferred payment method and complete your order securely.</p>
+    <div class="order-id">Order ID: <strong>#GK2026103001</strong></div>
+  </div>
+
+  <div class="checkout-grid">
+
+    <!-- PAYMENT SECTION -->
+    <section class="card">
+      <h2 class="section-title">Choose Payment Method</h2>
+
+      <div id="errorMessage" class="message"></div>
+
+      <div class="payment-tabs">
+
+        <button class="payment-option active" data-method="upi">
+          <span class="symbol">📱</span>
+          <strong>UPI</strong>
+          <small>Instant payment</small>
+        </button>
+
+        <button class="payment-option" data-method="card">
+          <span class="symbol">💳</span>
+          <strong>Cards</strong>
+          <small>Credit / Debit</small>
+        </button>
+
+        <button class="payment-option" data-method="netbanking">
+          <span class="symbol">🏦</span>
+          <strong>Net Banking</strong>
+          <small>All major banks</small>
+        </button>
+
+        <button class="payment-option" data-method="wallet">
+          <span class="symbol">👛</span>
+          <strong>Wallets</strong>
+          <small>Digital wallets</small>
+        </button>
+
+        <button class="payment-option" data-method="qr">
+          <span class="symbol">▦</span>
+          <strong>QR Payment</strong>
+          <small>Scan and pay</small>
+        </button>
+
+      </div>
+
+      <!-- DYNAMIC PAYMENT FORMS -->
+      <div class="method-content" id="methodContent">
+
+        <!-- UPI -->
+        <div id="upiForm">
+          <h3>Pay using UPI</h3>
+          <p>Enter your UPI ID or select your preferred UPI application.</p>
+
+          <div class="brand-list">
+            <button class="brand" type="button" onclick="selectUPI('Google Pay')">G Pay</button>
+            <button class="brand" type="button" onclick="selectUPI('PhonePe')">PhonePe</button>
+            <button class="brand" type="button" onclick="selectUPI('Paytm')">Paytm</button>
+            <button class="brand" type="button" onclick="selectUPI('BHIM')">BHIM</button>
+          </div>
+
+          <div class="input-group">
+            <label>UPI ID</label>
+            <input type="text" id="upiId" placeholder="example@upi">
+          </div>
+        </div>
+
+        <!-- CARD -->
+        <div id="cardForm" class="hidden">
+          <h3>Credit / Debit Card</h3>
+          <p>Enter your card details. This demo does not submit them to a payment server.</p>
+
+          <div class="brand-list">
+            <span class="brand">VISA</span>
+            <span class="brand">Mastercard</span>
+            <span class="brand">RuPay</span>
+          </div>
+
+          <div class="input-group">
+            <label>Cardholder Name</label>
+            <input type="text" id="cardName" placeholder="Name on card" autocomplete="cc-name">
+          </div>
+
+          <div class="input-group">
+            <label>Card Number</label>
+            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456"
+              maxlength="19" inputmode="numeric" autocomplete="cc-number">
+          </div>
+
+          <div class="two-inputs">
+            <div class="input-group">
+              <label>Expiry Date</label>
+              <input type="text" id="expiry" placeholder="MM/YY"
+                maxlength="5" inputmode="numeric" autocomplete="cc-exp">
+            </div>
+
+            <div class="input-group">
+              <label>CVV</label>
+              <input type="password" id="cvv" placeholder="•••"
+                maxlength="4" inputmode="numeric" autocomplete="cc-csc">
+            </div>
+          </div>
+        </div>
+
+        <!-- NET BANKING -->
+        <div id="netbankingForm" class="hidden">
+          <h3>Net Banking</h3>
+          <p>Select your bank to continue with online banking.</p>
+
+          <div class="input-group">
+            <label>Select Bank</label>
+            <select id="bank">
+              <option value="">Choose your bank</option>
+              <option>State Bank of India</option>
+              <option>HDFC Bank</option>
+              <option>ICICI Bank</option>
+              <option>Axis Bank</option>
+              <option>Punjab National Bank</option>
+              <option>Kotak Mahindra Bank</option>
+              <option>Bank of Baroda</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- WALLET -->
+        <div id="walletForm" class="hidden">
+          <h3>Digital Wallet</h3>
+          <p>Select your preferred digital wallet.</p>
+
+          <div class="input-group">
+            <label>Choose Wallet</label>
+            <select id="wallet">
+              <option value="">Select wallet</option>
+              <option>Paytm Wallet</option>
+              <option>Amazon Pay</option>
+              <option>Mobikwik</option>
+              <option>Freecharge</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- QR -->
+        <div id="qrForm" class="hidden">
+          <h3 style="text-align:center">Scan QR Code</h3>
+          <p style="text-align:center">Scan using any supported UPI application.</p>
+
+          <div class="qr-box">
+            <img id="qrImage" alt="Demo payment QR code">
+          </div>
+
+          <div class="qr-caption">
+            Amount: <strong id="qrAmount">₹0.00</strong><br>
+            <span style="font-size:10px">Demo QR only — not a real payment request.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="security">
+        <span>🔒</span> Secure payment interface · SSL-style security indicator
+      </div>
+
+      <div class="payment-logos">
+        <span>UPI</span>
+        <span>VISA</span>
+        <span>Mastercard</span>
+        <span>RuPay</span>
+        <span>Net Banking</span>
+      </div>
+    </section>
+
+    <!-- ORDER SUMMARY -->
+    <aside class="card summary-card">
+      <h2 class="section-title">Order Summary</h2>
+
+      <div class="product">
+        <img class="product-image"
+          src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200"
+          alt="Premium product">
+
+        <div class="product-info">
+          <h3>Premium Collection</h3>
+          <p>GarhKumo Exclusive</p>
+          <p>Quantity: 1</p>
+        </div>
+
+        <div class="product-price">₹4,999</div>
+      </div>
+
+      <div class="coupon">
+        <input id="couponInput" type="text" placeholder="Enter coupon code">
+        <button type="button" id="applyCoupon">APPLY</button>
+      </div>
+
+      <div id="couponMessage" class="coupon-message"></div>
+
+      <div class="price-details">
+        <div class="price-row">
+          <span>Subtotal</span>
+          <strong id="subtotal">₹4,999.00</strong>
+        </div>
+
+        <div class="price-row discount">
+          <span>Discount</span>
+          <strong id="discount">- ₹0.00</strong>
+        </div>
+
+        <div class="price-row">
+          <span>GST (18%)</span>
+          <strong id="gst">₹899.82</strong>
+        </div>
+
+        <div class="price-row">
+          <span>Delivery Charges</span>
+          <strong style="color:var(--green)">FREE</strong>
+        </div>
+      </div>
+
+      <div class="price-row total">
+        <span>Total Payable</span>
+        <strong id="total">₹5,898.82</strong>
+      </div>
+
+      <button class="pay-button" id="payButton">
+        Pay ₹5,898.82 →
+      </button>
+
+      <div class="security">
+        🔐 Your payment details are not stored by this demo.
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer class="footer">
+  © 2026 GarhKumo. All rights reserved.<br><br>
+  Secure Checkout · Privacy Policy · Terms & Conditions
+</footer>
+
+<!-- PROCESSING OVERLAY -->
+<div class="overlay" id="processingOverlay">
+  <div class="result-card">
+    <div class="loader"></div>
+    <h2>Processing Payment</h2>
+    <p>Please wait while we process your payment.<br>Do not close this window.</p>
+  </div>
+</div>
+
+<!-- SUCCESS OVERLAY -->
+<div class="overlay" id="successOverlay">
+  <div class="result-card">
+    <div class="result-icon success">✓</div>
+    <h2>Payment Successful!</h2>
+    <p>Your demo transaction has been completed successfully.</p>
+
+    <div class="receipt">
+      <div class="receipt-row">
+        <span>Transaction ID</span>
+        <strong id="transactionId">GK123456789</strong>
+      </div>
+
+      <div class="receipt-row">
+        <span>Order ID</span>
+        <strong>#GK2026103001</strong>
+      </div>
+
+      <div class="receipt-row">
+        <span>Payment Date</span>
+        <strong id="paymentDate"></strong>
+      </div>
+
+      <div class="receipt-row">
+        <span>Payment Method</span>
+        <strong id="paidMethod"></strong>
+      </div>
+
+      <div class="receipt-row">
+        <span>Amount Paid</span>
+        <strong id="paidAmount"></strong>
+      </div>
+
+      <div class="receipt-row">
+        <span>Status</span>
+        <strong style="color:var(--green)">SUCCESS</strong>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <button onclick="downloadReceipt()">Download Receipt</button>
+      <button class="secondary" onclick="closeResult()">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- FAILED OVERLAY -->
+<div class="overlay" id="failedOverlay">
+  <div class="result-card">
+    <div class="result-icon failed">✕</div>
+    <h2>Payment Failed</h2>
+    <p id="failureReason">Your payment could not be processed.</p>
+
+    <div class="receipt">
+      <div class="receipt-row">
+        <span>Order ID</span>
+        <strong>#GK2026103001</strong>
+      </div>
+
+      <div class="receipt-row">
+        <span>Amount</span>
+        <strong id="failedAmount"></strong>
+      </div>
+
+      <div class="receipt-row">
+        <span>Status</span>
+        <strong style="color:var(--red)">FAILED</strong>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <button onclick="retryPayment()">Try Again</button>
+      <button class="secondary" onclick="closeResult()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==========================================
+// GARHKUMO PAYMENT GATEWAY - FRONTEND DEMO
+// ==========================================
+
+const BASE_PRICE = 4999;
+const GST_RATE = 0.18;
+
+let discountRate = 0;
+let discountAmount = 0;
+let selectedMethod = 'upi';
+let selectedUPIApp = '';
+let currentTransaction = {};
+
+// Format currency
+function money(amount) {
+  return '₹' + amount.toLocaleString('en-IN', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
+// Calculate total
+function calculateTotal() {
+  const subtotal = BASE_PRICE;
+  discountAmount = subtotal * discountRate;
+
+  const taxableAmount = subtotal - discountAmount;
+  const gst = taxableAmount * GST_RATE;
+  const total = taxableAmount + gst;
+
+  document.getElementById('subtotal').textContent = money(subtotal);
+  document.getElementById('discount').textContent = '- ' + money(discountAmount);
+  document.getElementById('gst').textContent = money(gst);
+  document.getElementById('total').textContent = money(total);
+  document.getElementById('payButton').textContent =
+    'Pay ' + money(total) + ' →';
+  document.getElementById('qrAmount').textContent = money(total);
+
+  // Demo QR only: contains a non-payment placeholder, not a UPI payment URI.
+  document.getElementById('qrImage').src =
+    'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' +
+    encodeURIComponent('GARHKUMO DEMO ONLY - ' + money(total));
+
+  return { subtotal, discountAmount, gst, total };
+}
+
+// Coupon application
+document.getElementById('applyCoupon').addEventListener('click', () => {
+  const coupon = document.getElementById('couponInput')
+    .value.trim().toUpperCase();
+
+  const message = document.getElementById('couponMessage');
+
+  if (coupon === 'SAVE10') {
+    discountRate = 0.10;
+    message.style.color = 'var(--green)';
+    message.textContent = '✓ 10% discount applied successfully!';
+  } else if (coupon === 'GARH20') {
+    discountRate = 0.20;
+    message.style.color = 'var(--green)';
+    message.textContent = '✓ 20% discount applied successfully!';
+  } else {
+    discountRate = 0;
+    message.style.color = 'var(--red)';
+    message.textContent = 'Invalid coupon code. Please try again.';
+  }
+
+  calculateTotal();
+});
+
+// Payment method selection
+const methodForms = [
+  'upiForm',
+  'cardForm',
+  'netbankingForm',
+  'walletForm',
+  'qrForm'
+];
+
+document.querySelectorAll('.payment-option').forEach(button => {
+  button.addEventListener('click', () => {
+    selectedMethod = button.dataset.method;
+
+    document.querySelectorAll('.payment-option').forEach(item => {
+      item.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    methodForms.forEach(form => {
+      document.getElementById(form).classList.add('hidden');
+    });
+
+    document.getElementById(selectedMethod + 'Form')
+      .classList.remove('hidden');
+
+    document.getElementById('errorMessage').className = 'message';
+  });
+});
+
+// Select UPI application
+function selectUPI(app) {
+  selectedUPIApp = app;
+
+  const input = document.getElementById('upiId');
+  input.placeholder = 'Enter UPI ID for ' + app;
+
+  input.focus();
+}
+
+// Card number formatting
+document.getElementById('cardNumber').addEventListener('input', function() {
+  let value = this.value.replace(/\D/g, '').slice(0, 16);
+  this.value = value.replace(/(.{4})/g, '$1 ').trim();
+});
+
+// Expiry formatting
+document.getElementById('expiry').addEventListener('input', function() {
+  let value = this.value.replace(/\D/g, '').slice(0, 4);
+
+  if (value.length >= 3) {
+    value = value.slice(0, 2) + '/' + value.slice(2);
+  }
+
+  this.value = value;
+});
+
+// Validation helper
+function showError(message) {
+  const error = document.getElementById('errorMessage');
+  error.textContent = message;
+  error.className = 'message error';
+  error.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  return false;
+}
+
+function validatePayment() {
+  document.getElementById('errorMessage').className = 'message';
+
+  if (selectedMethod === 'upi') {
+    const upi = document.getElementById('upiId').value.trim();
+
+    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+$/.test(upi)) {
+      return showError('Please enter a valid UPI ID, for example name@upi.');
+    }
+  }
+
+  if (selectedMethod === 'card') {
+    const name = document.getElementById('cardName').value.trim();
+    const number = document.getElementById('cardNumber').value.replace(/\s/g, '');
+    const expiry = document.getElementById('expiry').value.trim();
+    const cvv = document.getElementById('cvv').value.trim();
+
+    if (name.length < 2) {
+      return showError('Please enter the cardholder name.');
+    }
+
+    if (!/^\d{16}$/.test(number)) {
+      return showError('Please enter a valid 16-digit demo card number.');
+    }
+
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
+      return showError('Please enter expiry in MM/YY format.');
+    }
+
+    const [month, year] = expiry.split('/').map(Number);
+    const current = new Date();
+    const expiryDate = new Date(2000 + year, month);
+
+    if (expiryDate <= new Date(current.getFullYear(), current.getMonth())) {
+      return showError('This card expiry date has passed.');
+    }
+
+    if (!/^\d{3,4}$/.test(cvv)) {
+      return showError('Please enter a valid CVV.');
+    }
+  }
+
+  if (selectedMethod === 'netbanking') {
+    if (!document.getElementById('bank').value) {
+      return showError('Please select your bank.');
+    }
+  }
+
+  if (selectedMethod === 'wallet') {
+    if (!document.getElementById('wallet').value) {
+      return showError('Please select a digital wallet.');
+    }
+  }
+
+  // QR is a visual demo only. It cannot collect a real payment.
+  if (selectedMethod === 'qr') {
+    return showError('QR payments are not connected in this frontend demo. Select another method to simulate checkout.');
+  }
+
+  return true;
+}
+
+// Get selected payment method label
+function getMethodName() {
+  if (selectedMethod === 'upi') {
+    return selectedUPIApp ? 'UPI - ' + selectedUPIApp : 'UPI';
+  }
+
+  if (selectedMethod === 'card') return 'Credit / Debit Card';
+  if (selectedMethod === 'netbanking') {
+    return document.getElementById('bank').value;
+  }
+  if (selectedMethod === 'wallet') {
+    return document.getElementById('wallet').value;
+  }
+  return 'QR Code';
+}
+
+// Process payment (simulation only)
+document.getElementById('payButton').addEventListener('click', () => {
+  if (!validatePayment()) return;
+
+  const button = document.getElementById('payButton');
+  button.disabled = true;
+
+  document.getElementById('processingOverlay').classList.add('show');
+
+  const amounts = calculateTotal();
+
+  // Demo only: intentionally simulate a successful payment.
+  // Never use this logic as a real payment authorization.
+  setTimeout(() => {
+    document.getElementById('processingOverlay').classList.remove('show');
+    button.disabled = false;
+
+    const success = true;
+
+    if (success) {
+      showSuccess(amounts.total);
+    } else {
+      showFailure(amounts.total);
+    }
+  }, 2200);
+});
+
+// Success screen
+function showSuccess(amount) {
+  const transactionId = 'GK' + Date.now().toString().slice(-10);
+  const date = new Date().toLocaleString('en-IN');
+
+  currentTransaction = {
+    id: transactionId,
+    order: 'GK2026103001',
+    date: date,
+    method: getMethodName(),
+    amount: amount
+  };
+
+  document.getElementById('transactionId').textContent = transactionId;
+  document.getElementById('paymentDate').textContent = date;
+  document.getElementById('paidMethod').textContent = currentTransaction.method;
+  document.getElementById('paidAmount').textContent = money(amount);
+
+  document.getElementById('successOverlay').classList.add('show');
+}
+
+// Failure screen
+function showFailure(amount) {
+  document.getElementById('failedAmount').textContent = money(amount);
+  document.getElementById('failedOverlay').classList.add('show');
+  document.getElementById('failureReason').textContent =
+    'The demo transaction could not be completed. Please try again.';
+}
+
+// Retry
+function retryPayment() {
+  document.getElementById('failedOverlay').classList.remove('show');
+  document.getElementById('errorMessage').className = 'message';
+
+  document.getElementById('payButton').scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+}
+
+// Close result
+function closeResult() {
+  document.querySelectorAll('.overlay').forEach(overlay => {
+    overlay.classList.remove('show');
+  });
+}
+
+// Download PDF receipt using jsPDF
+function downloadReceipt() {
+  if (!currentTransaction.id) return;
+
+  if (!window.jspdf) {
+    alert('PDF library could not be loaded. Please check your internet connection.');
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+
+  pdf.setFillColor(35, 75, 210);
+  pdf.rect(0, 0, 210, 42, 'F');
+
+  pdf.setTextColor(255, 255, 255);
+  pdf.setFontSize(23);
+  pdf.text('GarhKumo', 20, 19);
+
+  pdf.setFontSize(11);
+  pdf.text('PAYMENT RECEIPT', 20, 30);
+
+  pdf.setTextColor(30, 40, 65);
+  pdf.setFontSize(18);
+  pdf.text('Payment Successful', 20, 60);
+
+  pdf.setFontSize(11);
+
+  const details = [
+    ['Order ID', currentTransaction.order],
+    ['Transaction ID', currentTransaction.id],
+    ['Payment Date', currentTransaction.date],
+    ['Payment Method', currentTransaction.method],
+    ['Product', 'Premium Collection'],
+    ['Quantity', '1'],
+    ['Amount Paid', money(currentTransaction.amount)],
+    ['Payment Status', 'SUCCESS']
+  ];
+
+  let y = 80;
+
+  details.forEach(([label, value]) => {
+    pdf.setTextColor(115, 125, 145);
+    pdf.text(label, 20, y);
+
+    pdf.setTextColor(30, 40, 65);
+    pdf.text(String(value), 190, y, { align: 'right' });
+
+    pdf.setDrawColor(225, 230, 240);
+    pdf.line(20, y + 5, 190, y + 5);
+
+    y += 16;
+  });
+
+  pdf.setTextColor(100, 110, 130);
+  pdf.setFontSize(9);
+  pdf.text('This is a demonstration receipt, not proof of a real payment.', 20, y + 15);
+  pdf.text('Thank you for shopping with GarhKumo!', 20, y + 25);
+
+  pdf.save('GarhKumo-Payment-Receipt.pdf');
+}
+
+// Initial price calculation
+calculateTotal();
+
+</script>
+
+<!-- PDF GENERATION LIBRARY -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+
+</body>
+</html>
