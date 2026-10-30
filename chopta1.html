@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Basic Chopta Trek</title>
+
+  <style>
+
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#0b1d2a;
+      color:white;
+    }
+
+    header{
+      background:black;
+      padding:20px;
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    .container{
+      padding:20px;
+      max-width:1000px;
+      margin:auto;
+    }
+
+    .card{
+      background:#132f44;
+      padding:20px;
+      margin-bottom:20px;
+      border-radius:12px;
+    }
+
+    h2{
+      color:#00c3ff;
+      margin-bottom:15px;
+    }
+
+    ul{
+      line-height:1.9;
+    }
+
+    .price{
+      font-size:28px;
+      color:#00ffcc;
+      font-weight:bold;
+    }
+
+    input,
+    textarea,
+    button,
+    select{
+      width:100%;
+      padding:12px;
+      margin:8px 0;
+      border:none;
+      border-radius:6px;
+      font-size:15px;
+      box-sizing:border-box;
+    }
+
+    button{
+      background:#00c3ff;
+      color:black;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#00a8dd;
+    }
+
+    label{
+      display:block;
+      margin-top:10px;
+      margin-bottom:5px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+Basic Chopta Trek Package
+</header>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+
+  <div class="card">
+
+    <h2>📍 Package Overview</h2>
+
+    <p><b>Duration:</b> 2 Days / 1 Night</p>
+
+    <p><b>Route:</b> Haridwar → Rishikesh → Srinagar (Uttarakhand) → Chopta → Tungnath</p>
+
+    <p><b>Type:</b> Budget Trekking Package</p>
+
+    <p class="price">₹3,999 / Person</p>
+
+  </div>
+
+  <!-- DAY 1 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 1: Travel and Chopta Arrival</h2>
+
+    <ul>
+
+      <li><b>06:00 AM:</b> Depart from Haridwar / Rishikesh</li>
+
+      <li><b>10:30 AM:</b> Reach Srinagar, proceed to Chopta</li>
+
+      <li><b>02:00 PM:</b> Arrive Chopta and check-in to campsite</li>
+
+      <li><b>Evening:</b> Short nature walk, bonfire and dinner</li>
+
+    </ul>
+
+  </div>
+
+  <!-- DAY 2 -->
+
+  <div class="card">
+
+    <h2>🗺️ Day 2: Tungnath Trek and Return</h2>
+
+    <ul>
+
+      <li><b>07:00 AM:</b> Breakfast at the campsite</li>
+
+      <li><b>08:00 AM:</b> Trek to Tungnath Temple</li>
+
+      <li><b>11:30 AM:</b> Visit Tungnath and return to Chopta</li>
+
+      <li><b>02:00 PM:</b> Depart for Haridwar / Rishikesh</li>
+
+      <li><b>Night:</b> Reach Haridwar</li>
+
+    </ul>
+
+  </div>
+
+  <!-- INCLUSIONS -->
+
+  <div class="card">
+
+    <h2>✅ Inclusions</h2>
+
+    <ul>
+
+      <li>Transport to Chopta and return</li>
+
+      <li>1 Night campsite stay</li>
+
+      <li>Meals: dinner, breakfast</li>
+
+      <li>Guide for the Tungnath trek</li>
+
+    </ul>
+
+  </div>
+
+  <!-- BOOKING FORM -->
+
+  <div class="card">
+
+    <h2>📩 Booking Form</h2>
+
+    <form id="bookingForm">
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Full Name"
+        required
+      >
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Email Address"
+        required
+      >
+
+      <input
+        type="tel"
+        id="mobile"
+        placeholder="Mobile Number"
+        required
+      >
+
+      <input
+        type="number"
+        id="people"
+        placeholder="Number of People"
+        min="1"
+        required
+      >
+
+      <label>Preferred Travel Date</label>
+
+      <input
+        type="date"
+        id="traveldate"
+        required
+      >
+
+      <input
+        type="text"
+        id="pickupCity"
+        placeholder="Pickup City"
+        required
+      >
+
+      <input
+        type="text"
+        id="age"
+        placeholder="Age Details"
+        required
+      >
+
+      <label>Medical Certificate</label>
+
+      <input
+        type="file"
+        required
+      >
+
+      <label>Upload Aadhaar / ID Proof</label>
+
+      <input
+        type="file"
+        required
+      >
+
+      <button type="submit">
+        Continue To Payment
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+
+document
+.getElementById("bookingForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    // BOOKING DATA
+
+    var bookingData = {
+
+        customerName:
+            document.getElementById("name").value,
+
+        customerEmail:
+            document.getElementById("email").value,
+
+        customerPhone:
+            document.getElementById("mobile").value,
+
+        guests:
+            document.getElementById("people").value,
+
+        travelDate:
+            document.getElementById("traveldate").value,
+
+        pickupCity:
+            document.getElementById("pickupCity").value,
+
+        age:
+            document.getElementById("age").value,
+
+        destination:
+            "Chopta",
+
+        packageName:
+            "Basic Chopta Trek Package",
+
+        packageDays:
+            "2 Days / 1 Night",
+
+        packagePrice:
+            "3999"
+    };
+
+    // SAVE BOOKING DATA
+
+    localStorage.setItem(
+        "garhKumoBooking",
+        JSON.stringify(bookingData)
+    );
+
+    // SAVE ENQUIRY FOR ADMIN PANEL
+
+    let enquiries =
+        JSON.parse(localStorage.getItem("enquiries")) || [];
+
+    enquiries.push({
+
+        name:
+            bookingData.customerName,
+
+        email:
+            bookingData.customerEmail,
+
+        phone:
+            bookingData.customerPhone,
+
+        persons:
+            bookingData.guests,
+
+        date:
+            bookingData.travelDate,
+
+        destination:
+            bookingData.destination,
+
+        package:
+            bookingData.packageName,
+
+        pickupCity:
+            bookingData.pickupCity,
+
+        age:
+            bookingData.age
+    });
+
+    localStorage.setItem(
+        "enquiries",
+        JSON.stringify(enquiries)
+    );
+
+    // REDIRECT TO PAYMENT PAGE
+
+    window.location.href = "payment.html";
+
+});
+
+</script>
+
+</body>
+</html>
