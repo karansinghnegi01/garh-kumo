@@ -1,0 +1,176 @@
+<!-- ================= FINAL PREMIUM FOOD SYSTEM ================= -->
+
+<!-- ================= FOOD PAGE (food.html) ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GarhKumo Food Premium</title>
+
+<style>
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#0f172a;color:#fff}
+header{padding:15px 30px;display:flex;justify-content:space-between;background:#020617}
+nav a{color:#fff;margin:0 10px;text-decoration:none}
+
+.section{padding:30px}
+.section h2{margin-bottom:15px}
+
+.slider{display:flex;overflow-x:auto;gap:15px;padding-bottom:10px}
+
+.card{min-width:220px;height:300px;border-radius:15px;overflow:hidden;position:relative;cursor:pointer;transition:0.3s}
+.card:hover{transform:scale(1.05)}
+
+.card img{width:100%;height:100%;object-fit:cover;transition:0.4s}
+.card:hover img{transform:scale(1.1)}
+
+.overlay{position:absolute;bottom:0;width:100%;background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);padding:15px}
+.overlay h3{margin:0;font-size:18px}
+.overlay p{margin:5px 0;font-size:13px;color:#ddd}
+.price{color:#22c55e;font-weight:bold}
+
+/* BUTTON */
+.view-btn{margin-top:10px;padding:8px 14px;border:none;border-radius:20px;background:linear-gradient(45deg,#22c55e,#16a34a);color:#fff;font-size:13px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden}
+.view-btn:hover{transform:scale(1.1)}
+.view-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);transition:0.5s}
+.view-btn:hover::before{left:100%}
+
+</style>
+</head>
+
+<body>
+<header>
+  <h2>GarhKumo</h2>
+  <nav><a href="index.html">Home</a></nav>
+</header>
+
+<div class="section">
+  <h2>🔥 Popular Foods</h2>
+  <div class="slider" id="popular"></div>
+</div>
+
+<div class="section">
+  <h2>🍽️ Explore Foods</h2>
+  <div class="slider" id="allFoods"></div>
+</div>
+
+<script>
+let foods = [
+{
+    id:'kafuli',
+    name:'Kafuli',
+    price:'₹150',
+    type:'Veg',
+    region:'Garhwal',
+    img:'kafal.jpeg'  
+  },
+  {
+    id:'chainsoo',
+    name:'Chainsoo',
+    price:'₹120',
+    type:'Veg',
+    region:'Garhwal',
+    img:'https://source.unsplash.com/400x300/?dal,indian-food'
+  },
+  {
+    id:'bhatt',
+    name:'Bhatt Ki Churkani',
+    price:'₹130',
+    type:'Veg',
+    region:'Kumaon',
+    img:'bhatt.jpeg',
+  }
+];
+
+for(let i=1;i<=50;i++){
+foods.push({id:'dish'+i,name:'Bhatwani '+i,price:'₹'+(100+i),type:i%2==0?'Veg':'Non-Veg',region:i%2==0?'Garhwal':'Kumaon'});
+}
+
+function createCard(food){
+return `
+<div class="card">
+<img src="https://source.unsplash.com/400x300/?food,${food.name}">
+<div class="overlay">
+<h3>${food.name}</h3>
+<p>${food.type} • ${food.region}</p>
+<div class="price">${food.price}</div>
+<button class="view-btn" onclick="openDetail('${food.id}')">View Details →</button>
+</div>
+</div>`;
+}
+
+function render(){
+const pop=document.getElementById('popular');
+const all=document.getElementById('allFoods');
+foods.forEach((f,i)=>{
+if(i<5) pop.innerHTML+=createCard(f);
+all.innerHTML+=createCard(f);
+});
+}
+
+function openDetail(id){
+localStorage.setItem('foodData',JSON.stringify(foods));
+window.location='food-detail.html?id='+id;
+}
+
+render();
+</script>
+</body>
+</html>
+
+
+<!-- ================= DETAIL PAGE (food-detail.html) ================= -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Food Detail</title>
+<style>
+body{margin:0;font-family:Arial;background:#111;color:#fff}
+.hero{height:60vh;background-size:cover;display:flex;align-items:end;padding:30px}
+.overlay{background:rgba(0,0,0,0.6);padding:20px;border-radius:10px}
+.section{padding:20px}
+.price{color:#22c55e;font-size:20px}
+button{padding:10px;margin:5px;border:none;border-radius:6px;cursor:pointer}
+.order{background:red;color:#fff}
+.book{background:#38bdf8}
+</style>
+</head>
+<body>
+
+<div class="hero" id="hero">
+<div class="overlay">
+<h1 id="name"></h1>
+<p id="meta"></p>
+<p class="price" id="price"></p>
+<button class="order" onclick="orderNow()">Order Now</button>
+<button class="book" onclick="bookNow()">Book Tour</button>
+</div>
+</div>
+
+<div class="section">
+<h2>About Dish</h2>
+<p id="desc"></p>
+</div>
+
+<script>
+const params=new URLSearchParams(window.location.search);
+const id=params.get('id');
+const foods=JSON.parse(localStorage.getItem('foodData'))||[];
+const food=foods.find(f=>f.id===id);
+
+if(food){
+document.getElementById('name').innerText=food.name;
+document.getElementById('meta').innerText=food.type+' • '+food.region;
+document.getElementById('price').innerText=food.price;
+document.getElementById('desc').innerText='This is a detailed description of '+food.name+' from Uttarakhand including taste, ingredients and cultural value.';
+document.getElementById('hero').style.backgroundImage=`url(https://source.unsplash.com/1600x900/?food,${food.name})`;
+}
+
+function orderNow(){window.open('https://www.swiggy.com');}
+function bookNow(){window.open('https://wa.me/91XXXXXXXXXX');}
+</script>
+
+</body>
+</html>
