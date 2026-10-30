@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Package Enquiry</title>
+  <link rel="stylesheet" href="booking.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="index.html">Home</a>
+  </header>
+
+  <h1>Make a Request</h1>
+
+  <div class="form">
+    <div id="selectedPackageBanner" style="display:none;background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:12px 16px;margin-bottom:14px;color:#065f46;font-size:15px;"></div>
+
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Email (optional, for receipt)">
+    <input type="text" id="phone" placeholder="Phone Number" required>
+    <input type="text" id="persons" placeholder="Number of Persons" required>
+    <input type="date" id="date" required>
+
+    <select id="package">
+      <option value="">-- Select package --</option>
+      <option>Basic Package</option>
+      <option>Standard Package</option>
+      <option>Deluxe Package</option>
+      <option>Luxury Package</option>
+      <option>Family Package</option>
+      <option>Adventure Package</option>
+      <option>Premium VIP Package</option>
+    </select>
+
+    <div style="display:flex;gap:10px;margin-top:8px;">
+      <button onclick="submitEnquiry()" style="flex:1;">Submit enquiry</button>
+      <button onclick="goToPayment()" style="flex:1;background:#0369a1;">Proceed to payment</button>
+    </div>
+  </div>
+  <script src="receipt-payload.js"></script>
+  <script src="booking.js"></script>
+  <script>
+    (function(){
+      // Pre-fill package from place page "Book now"
+      var raw = localStorage.getItem("selectedPackage");
+      var dest = localStorage.getItem("destination") || "";
+      if(raw){
+        try{
+          var p = JSON.parse(raw);
+          var banner = document.getElementById("selectedPackageBanner");
+          banner.style.display = "block";
+          banner.innerHTML = "<strong>Selected:</strong> " + (p.name || "") +
+            (p.days ? " &nbsp;|&nbsp; " + p.days : "") +
+            (p.price ? " &nbsp;|&nbsp; ₹" + p.price : "") +
+            (dest ? " &nbsp;|&nbsp; " + dest : "");
+          // Try to match an option, else add it
+          var sel = document.getElementById("package");
+          var found = false;
+          for(var i=0;i<sel.options.length;i++){
+            if(sel.options[i].text === p.name){ sel.selectedIndex = i; found = true; break; }
+          }
+          if(!found && p.name){
+            var opt = document.createElement("option");
+            opt.value = p.name; opt.text = p.name; opt.selected = true;
+            sel.appendChild(opt);
+          }
+        }catch(e){}
+      }
+    })();
+  </script>
+</body>
+</html>
