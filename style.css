@@ -1329,4 +1329,116 @@ html{
     border-radius: 14px;
   }
 }
+/* GARHKUMO Weather UI Enhancement Only */
+.gk-weather-panel {
+background: rgba(255, 255, 255, 0.97);
+border: 1px solid rgba(23, 107, 80, 0.15);
+box-shadow: 0 16px 45px rgba(0, 0, 0, 0.22);
+backdrop-filter: blur(14px);
+}
+
+.gk-weather-header {
+padding-bottom: 14px;
+border-bottom: 1px solid #e5eee8;
+}
+
+.gk-weather-header h2 {
+letter-spacing: 0.3px;
+}
+
+.gk-weather-toggle {
+background: linear-gradient(135deg, #176b50, #23966d);
+box-shadow: 0 8px 22px rgba(23, 107, 80, 0.3);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gk-weather-toggle:hover {
+transform: translateY(-3px);
+box-shadow: 0 12px 26px rgba(23, 107, 80, 0.35);
+}
+
+.gk-current-weather {
+background: linear-gradient(145deg, #e8f7ef, #f5fbf7);
+border: 1px solid #d5eadc;
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.gk-weather-temp {
+font-size: 54px;
+letter-spacing: -1.5px;
+}
+
+.gk-weather-details > div {
+background: #fff;
+border-color: #e0ebe4;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gk-weather-details > div:hover {
+transform: translateY(-2px);
+box-shadow: 0 5px 14px rgba(23, 107, 80, 0.08);
+}
+
+.gk-hour-card,
+.gk-day-card {
+background: linear-gradient(160deg, #fff, #f3f9f5);
+border-color: #dce9e0;
+transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.gk-hour-card:hover,
+.gk-day-card:hover {
+border-color: #79b99a;
+transform: translateY(-2px);
+}
+
+.gk-weather-panel select:focus,
+.gk-weather-panel #gkWeatherBtn:focus-visible,
+.gk-weather-toggle:focus-visible {
+outline: 3px solid rgba(35, 150, 109, 0.25);
+outline-offset: 2px;
+}
+
+.gk-weather-panel #gkWeatherBtn {
+background: linear-gradient(135deg, #176b50, #23966d);
+transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.gk-weather-panel #gkWeatherBtn:hover:not(:disabled) {
+filter: brightness(1.08);
+transform: translateY(-1px);
+}
+
+/* Destination weather card */
+.gk-weather-card {
+border: 1px solid #e0ebe4;
+box-shadow: 0 12px 35px rgba(23, 65, 46, 0.12);
+}
+
+.gk-weather-card select:focus,
+.gk-weather-card button:focus-visible {
+outline: 3px solid rgba(35, 150, 109, 0.22);
+outline-offset: 2px;
+}
+
+#gkWeatherResult {
+border: 1px solid #dcebe1;
+background: linear-gradient(145deg, #f1faf5, #e8f5ed);
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+#gkWeatherResult h3 {
+letter-spacing: -0.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+.gk-weather-toggle,
+.gk-weather-details > div,
+.gk-hour-card,
+.gk-day-card,
+.gk-weather-panel #gkWeatherBtn {
+transition: none;
+}
+}
+
          
